@@ -4,7 +4,7 @@ const userSchema = require('./User');
 
 const vehicleSchema = new Schema({
     year: {
-        type: Int,
+        type: Number,
         required: true,
     },
     make: {
@@ -19,11 +19,11 @@ const vehicleSchema = new Schema({
         type: String,
     },
     VIN: {
-        type: Int,
+        type: Number,
     },
     owners: [userSchema],
     odometer: {
-        type: Int,
+        type: Number,
     },
     notes: {
         type: String,
