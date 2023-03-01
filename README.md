@@ -40,6 +40,9 @@ After you clone the repository...
 
 - From the same location, run `npm run develop` to start both client and server applications simultaneously in Development mode.
 
+npx create-react-app
+
+
 ## Usage
 
 Provide instructions and examples for use. Include screenshots as needed.
