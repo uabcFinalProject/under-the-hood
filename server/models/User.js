@@ -26,7 +26,10 @@ const userSchema = new Schema(
     // phoneNumber: {
     //     type: Number,
     // },
-    vehicles: [vehicleSchema],
+    vehicles: {
+      type: Schema.Types.ObjectId,
+      ref: 'Vehicle',
+    }
   },
   // set this to use virtual below
   {
