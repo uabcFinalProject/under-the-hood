@@ -1,10 +1,10 @@
 const { Schema } = require('mongoose');
 
-const userSchema = require('./User');
+// const userSchema = require('./User');
 
 const vehicleSchema = new Schema({
     year: {
-        type: Int,
+        type: Number,
         required: true,
     },
     make: {
@@ -19,11 +19,14 @@ const vehicleSchema = new Schema({
         type: String,
     },
     VIN: {
-        type: Int,
+        type: Number,
     },
-    owners: [userSchema],
+    owners: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+    },
     odometer: {
-        type: Int,
+        type: Number,
     },
     notes: {
         type: String,
