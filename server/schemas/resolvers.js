@@ -1,6 +1,6 @@
 const { signToken } = require ('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
-const { User } = require('../models');
+const { User, Vehicle, Maintenance, Reminder } = require('../models');
 
 const resolvers = {
   Query: {
@@ -13,13 +13,20 @@ const resolvers = {
     users: async () => {
       return await User.find({});
     },
+    vehicles: async () => { 
+      return await Vehicle.find({});
+    },
+    vehicle: async (parent, { vehicleId }, context) => { 
+      return Thought.findOne({ _id: vehicleId });
+    },
   },
   Mutation: {
-    addUser: async (parent, { email, password, }) => {
-      const user = await User.create({ email, password });
+    addUser: async (parent, { email, password, firstName, lastName, phoneNumber }) => {
+      const user = await User.create({ email, password, firstName, lastName, phoneNumber });
       const token = signToken(user)
       return { token, user };
     },
+
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -37,6 +44,22 @@ const resolvers = {
 
       return { token, user };
     },
+
+    addVehicle: async (parent, { year, make, model, color, vin, owner, odometer, notes }, context) => {
+      // this line mocks User "veruca@mail.com" as the owner
+      const id = '63ffa2dbe80cec05abf54a95';
+      const vehicle = await Vehicle.create(
+        { year, make, model, color, vin, $set: { owner: id }, odometer, notes }
+      );
+
+      await User.findOneAndUpdate(
+        { _id: id },
+        { $addToSet: { vehicles: vehicle._id } },
+        { new: true, runValidators: true, }
+      );
+
+      return vehicle;
+    }
   },
 };
 

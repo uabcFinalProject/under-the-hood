@@ -17,15 +17,15 @@ const userSchema = new Schema(
     },
     firstName: {
         type: String,
-        required: false,
+        required: true,
     },
     lastName: {
         type: String,
-        required: false,
+        required: true,
     },
-    // phoneNumber: {
-    //     type: Number,
-    // },
+    phoneNumber: {
+        type: Number,
+    },
     vehicles: {
       type: Schema.Types.ObjectId,
       ref: 'Vehicle',
