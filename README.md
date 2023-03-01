@@ -5,12 +5,7 @@
 
 A vehicle maintenance reminder, tracking and scheduling application.
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
-
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
+This project in
 
 ## Table of Contents (Optional)
 
@@ -21,9 +16,29 @@ If your README is long, add a table of contents to make it easy for users to fin
 - [Credits](#credits)
 - [License](#license)
 
+## Application Prep
+
+**Prerequisites** Install this application on a server with Node.js and Express.js already installed.
+
+In the Top Level Folder
+- `npm install --save-dev concurrently`
+
+In the /client directory
+- `npm install @apollo-client graphql jwt-decode
+
+In the /server directory
+- `npm install --save-dev nodemon`
+- `npm install apollo-server-express bcrypt express graphql jsonwebtoken mongoose`
+
+**NOTE** The above steps were used to install dependencies during app development.  These steps should *not* be necessary to install and run this application.  See *installation* steps below for setting up the application for your own use.
+
 ## Installation
 
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
+After you clone the repository...
+
+- From the top Level older, open a terminal window and run `npm run install`.  This will install all dependencies for the top level, as well as the /client and /server.
+
+- From the same location, run `npm run develop` to start both client and server applications simultaneously in Development mode.
 
 ## Usage
 
@@ -43,9 +58,17 @@ If you used any third-party assets that require attribution, list the creators w
 
 If you followed tutorials, include links to those here as well.
 
+The following individuals worked together to create this application:
+
+- [Maggie Delaney](https://github.com/maggierdelaney)
+- [Isabella Pettini](https://github.com/isabella-pettini)
+- [Parker Scully](https://github.com/Pscully21)
+- [Jessica Oboh](https://github.com/JessicaOB)
+- [Sean Collins](https://github.com/iseanc)
+
 ## License
 
-The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/](https://choosealicense.com/).
+[MIT License](/LICENSE).
 
 ---
 
