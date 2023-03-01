@@ -1,5 +1,7 @@
 const { Schema } = require('mongoose');
 
+const userSchema = require('./User');
+
 const vehicleSchema = new Schema({
     year: {
         type: Int,
