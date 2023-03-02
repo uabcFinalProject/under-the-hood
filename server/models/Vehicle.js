@@ -1,6 +1,6 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
-// const userSchema = require('./User');
+const userSchema = require('./User');
 
 const vehicleSchema = new Schema({
     year: {
@@ -18,13 +18,21 @@ const vehicleSchema = new Schema({
     color: {
         type: String,
     },
-    VIN: {
-        type: Number,
+    /* 
+    A VIN is usually composed of: 17 characters including digits and capital letters, that acts as a unique identifier for your car. The VIN number tells you when and where the car was built. It tells you the manufacturer, year, make and model, and the trim level including unique features and specifications.
+    */
+    vin: {
+        type: String,
+        unique: true,
+        minLength: 17,
+        maxLength: 17,
+        uppercase: true,
     },
-    owners: {
+    owner: [{
         type: Schema.Types.ObjectId,
         ref: 'User',
-    },
+        required: false,
+    }],
     odometer: {
         type: Number,
     },
@@ -33,4 +41,6 @@ const vehicleSchema = new Schema({
     },
 });
 
-module.exports = vehicleSchema;
+const Vehicle = model("Vehicle", vehicleSchema);
+
+module.exports = Vehicle;
