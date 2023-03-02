@@ -45,7 +45,7 @@ const resolvers = {
       return { token, user };
     },
 
-    addVehicle: async (parent, { year, make, model, color, vin, odometer, notes }, context) => {
+    addVehicle: async (parent, { vin, year, make, model, color, odometer, notes }, context) => {
       // this line mocks User "veruca@mail.com" as the owner
       const id = '63ffa2dbe80cec05abf54a95';
       const vehicle = await Vehicle.create(

@@ -23,6 +23,13 @@ const reminderSchema = new Schema({
         type: Number,
         required: true,
         default: 0
+    },
+    notifyType: {
+        type: String,
+        required: true,
+    },
+    notes: {
+        type: String,
     }
 });
 

@@ -1,7 +1,5 @@
 const { Schema, model } = require('mongoose');
 
-const userSchema = require('./User');
-
 const vehicleSchema = new Schema({
     year: {
         type: Number,
@@ -27,6 +25,7 @@ const vehicleSchema = new Schema({
         minLength: 17,
         maxLength: 17,
         uppercase: true,
+        required: true,
     },
     odometer: {
         type: Number,

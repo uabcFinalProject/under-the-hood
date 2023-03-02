@@ -11,8 +11,8 @@ const typeDefs = gql`
     vin: String
     odometer: Int
     notes: String
-    reminders: [Reminder]!
-    serviceHistory: [ServiceHistory]!
+    reminders: [Reminder!]
+    serviceHistory: [ServiceHistory!]
   }
 
   type User {
@@ -31,6 +31,8 @@ const typeDefs = gql`
     serviceType: [ServiceItem]!
     notifyStartDate: String
     notifyFrequency: Int
+    notifyType: String
+    notes: String
   }
 
   type ServiceItem {
@@ -40,7 +42,7 @@ const typeDefs = gql`
   }
 
   type ServiceHistory {
-    vehicles: [Vehicle]!
+    _id: ID
     serviceItem: [ServiceItem]!
     serviceDate: String
     serviceProvider: String
@@ -61,11 +63,11 @@ const typeDefs = gql`
    login(email: String!, password: String!): Auth
    addUser(email: String!, password: String!, firstName: String!, lastName: String!, phoneNumber: Int): Auth
    addVehicle(
+    vin: String!,
     year: Int!,
     make: String!,
     model: String!,
     color: String,
-    vin: String,
     odometer: Int,
     notes: String
   ): Vehicle
