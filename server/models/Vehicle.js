@@ -28,17 +28,20 @@ const vehicleSchema = new Schema({
         maxLength: 17,
         uppercase: true,
     },
-    owner: [{
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: false,
-    }],
     odometer: {
         type: Number,
     },
     notes: {
         type: String,
     },
+    reminders: {
+        type: Schema.Types.ObjectId,
+        ref: 'Reminder',
+    },
+    serviceHistory: {
+        type: Schema.Types.ObjectId,
+        ref: 'ServiceHistory'
+    }
 });
 
 const Vehicle = model("Vehicle", vehicleSchema);

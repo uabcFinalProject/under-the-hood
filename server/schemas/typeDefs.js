@@ -9,9 +9,10 @@ const typeDefs = gql`
     model: String
     color: String
     vin: String
-    owner: User
     odometer: Int
     notes: String
+    reminders: [Reminder]!
+    serviceHistory: [ServiceHistory]!
   }
 
   type User {
@@ -22,6 +23,27 @@ const typeDefs = gql`
     lastName: String
     phoneNumber: Int
     vehicles: [Vehicle]!
+  }
+
+  type Reminder {
+    _id: ID
+    user: [User]!
+    serviceType: [ServiceItem]!
+    notifyStartDate: String
+    notifyFrequency: Int
+  }
+
+  type ServiceItem {
+    _id: ID
+    description: String
+    moreInfoLink: String
+  }
+
+  type ServiceHistory {
+    vehicles: [Vehicle]!
+    serviceItem: [ServiceItem]!
+    serviceDate: String
+    serviceProvider: String
   }
 
   type Query {

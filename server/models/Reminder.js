@@ -5,16 +5,29 @@ const reminderSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
+        required: true
     },
-    maintenanceItem: {
+    serviceType: {
         type: Schema.Types.ObjectId,
-        ref: 'Maintenance',
+        ref: 'ServiceItem',
+        required: true
     },
-    date: {
+    notifyStartDate: {
         type: Date,
+        required: true,
+        default: new Date
+    },
+    notifyFrequency: {
+        // 0 = Once, 
+        // >=1 is number of days between
+        type: Number,
+        required: true,
+        default: 0
     }
 });
 
-module.exports = reminderSchema;
+const Reminder = model("Reminder", reminderSchema);
+
+module.exports = Reminder;
 
 //questions: we are hoping to figure out how to construct our reminder schema, we want it to have the user, desired maintenance item, as well as the date of the reminders itself
