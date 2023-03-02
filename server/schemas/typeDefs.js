@@ -22,13 +22,13 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     phoneNumber: Int
-    vehicles: [Vehicle]!
+    vehicles: [Vehicle]
   }
 
   type Reminder {
     _id: ID
-    user: [User]!
-    serviceType: [ServiceItem]!
+    user: [User]
+    serviceType: [ServiceItem]
     notifyStartDate: String
     notifyFrequency: Int
     notifyType: String
@@ -43,7 +43,7 @@ const typeDefs = gql`
 
   type ServiceHistory {
     _id: ID
-    serviceItem: [ServiceItem]!
+    serviceItem: [ServiceItem]
     serviceDate: String
     serviceProvider: String
   }
