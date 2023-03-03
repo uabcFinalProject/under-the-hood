@@ -19,6 +19,12 @@ const resolvers = {
     vehicle: async (parent, { vehicleId }, context) => {
       return Thought.findOne({ _id: vehicleId });
     },
+    services: async () => {
+      return await ServiceItem.find({});
+    },
+    service: async (parent, { _id }, context) => {
+      return ServiceItem.findOne({ _id });
+    },
   },
   Mutation: {
     addUser: async (parent, { email, password, firstName, lastName, phoneNumber }) => {
