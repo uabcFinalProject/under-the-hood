@@ -1,6 +1,6 @@
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Vehicle, Maintenance, Reminder } = require('../models');
+const { User, Vehicle, Maintenance, Reminder, ServiceItem } = require('../models');
 
 const resolvers = {
   Query: {
@@ -18,6 +18,12 @@ const resolvers = {
     },
     vehicle: async (parent, { vehicleId }, context) => {
       return Thought.findOne({ _id: vehicleId });
+    },
+    getAllServiceItems: async () => {
+      return await ServiceItem.find({});
+    },
+    getServiceItem: async (parent, { _id }, context) => {
+      return ServiceItem.findOne({ _id });
     },
   },
   Mutation: {
