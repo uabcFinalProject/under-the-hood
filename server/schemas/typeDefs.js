@@ -53,6 +53,8 @@ const typeDefs = gql`
     me: User
     vehicles: [Vehicle]
     vehicle(vehicleId: ID!): Vehicle
+    getAllServiceItems: [ServiceItem]
+    getServiceItem(serviceItemId: ID!): ServiceItem
  }
   type Auth {
    token: ID!
@@ -63,14 +65,10 @@ const typeDefs = gql`
    login(email: String!, password: String!): Auth
    addUser(email: String!, password: String!, firstName: String!, lastName: String!, phoneNumber: Int): Auth
    addVehicle(
-    vin: String!,
-    year: Int!,
-    make: String!,
-    model: String!,
-    color: String,
-    odometer: Int,
-    notes: String
-  ): Vehicle
+    vin: String!, year: Int!, make: String!, model: String!,
+    color: String, odometer: Int, notes: String ): Vehicle
+    addServiceItem(description: String!, moreInfoLink: String): ServiceItem
+    removeServiceItem(serviceItemId: ID!): ServiceItem
  }
 `;
 
