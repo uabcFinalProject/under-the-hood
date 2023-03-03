@@ -4,20 +4,20 @@
         "password": "testing123",
         "firstName": "Nina",
         "lastName": "Simone",
-        "phoneNumber": "5555551234"
+        "phoneNumber": 1115551234
     },
     {
         "email": "gwen@testing.com",
         "password": "testing111",
         "firstName": "Gwen",
         "lastName": "Stefani",
-        "phoneNumber": "5554441234"
+        "phoneNumber": 1114441234
     },
     {
         "email": "jack@testing.com",
         "password": "testing222",
         "firstName": "Jack",
         "lastName": "Johnson",
-        "phoneNumber": "5553331234"
+        "phoneNumber": 1113331234
     }
 ]
