@@ -25,6 +25,15 @@ const resolvers = {
     service: async (parent, { _id }, context) => {
       return ServiceItem.findOne({ _id });
     },
+    reminders: async () => {
+      return await Reminder.find({});
+    },
+    reminder: async (parent, { _id }, context) => {
+      return Reminder.findOne({ _id });
+    },
+    serviceHistory: async () => {
+      return await ServiceHistory.find({});
+    },
   },
   Mutation: {
     addUser: async (parent, { email, password, firstName, lastName, phoneNumber }) => {
