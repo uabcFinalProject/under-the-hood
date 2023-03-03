@@ -1,4 +1,4 @@
-const { signToken } = require ('../utils/auth');
+const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Vehicle, Maintenance, Reminder } = require('../models');
 
@@ -13,10 +13,10 @@ const resolvers = {
     users: async () => {
       return await User.find({});
     },
-    vehicles: async () => { 
+    vehicles: async () => {
       return await Vehicle.find({});
     },
-    vehicle: async (parent, { vehicleId }, context) => { 
+    vehicle: async (parent, { vehicleId }, context) => {
       return Thought.findOne({ _id: vehicleId });
     },
   },
@@ -59,8 +59,30 @@ const resolvers = {
       );
 
       return vehicle;
-    }
-  },
-};
+    },
 
-module.exports = resolvers ;
+    addServiceItem: async (parent, { description, moreInfoLink }, context) => {
+      if (context.user) {
+        const seviceItem = await ServiceItem.create({
+          description,
+          moreInfoLink,
+        });
+        // await User.findOneAndUpdate({ _id: context.user._id }, { $addToSet: { serviceItems: serviceItem._id } }
+        // );
+        return serviceItem;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+
+    removeServiceItem: async (parent, { _id }, context) => {
+      if (context.user) {
+        const serviceItem = await ServiceItem.findOneAndDelete(
+          {_id});
+        return serviceItem;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+  }
+}
+
+  module.exports = resolvers;
