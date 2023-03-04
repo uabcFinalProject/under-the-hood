@@ -55,6 +55,9 @@ const typeDefs = gql`
     vehicle(vehicleId: ID!): Vehicle
     getAllServiceItems: [ServiceItem]
     getServiceItem(serviceItemId: ID!): ServiceItem
+    reminders: [Reminder]
+    reminder(reminderId: ID!): Reminder
+    serviceHistory: [ServiceHistory]
  }
   type Auth {
    token: ID!

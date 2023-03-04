@@ -35,6 +35,7 @@ const resolvers = {
       return await ServiceHistory.find({});
     },
   },
+  //do we need separate service items and reminders? are they combined? 
   Mutation: {
     addUser: async (parent, { email, password, firstName, lastName, phoneNumber }) => {
       const user = await User.create({ email, password, firstName, lastName, phoneNumber });
