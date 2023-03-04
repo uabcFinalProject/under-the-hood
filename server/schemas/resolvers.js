@@ -25,6 +25,15 @@ const resolvers = {
     getServiceItem: async (parent, { _id }, context) => {
       return ServiceItem.findOne({ _id });
     },
+    reminders: async () => {
+      return await Reminder.find({});
+    },
+    reminder: async (parent, { _id }, context) => {
+      return Reminder.findOne({ _id });
+    },
+    serviceHistory: async () => {
+      return await ServiceHistory.find({});
+    },
   },
   Mutation: {
     addUser: async (parent, { email, password, firstName, lastName, phoneNumber }) => {
@@ -83,7 +92,7 @@ const resolvers = {
     removeServiceItem: async (parent, { _id }, context) => {
       if (context.user) {
         const serviceItem = await ServiceItem.findOneAndDelete(
-          {_id});
+          { _id });
         return serviceItem;
       }
       throw new AuthenticationError('You need to be logged in!');
@@ -91,4 +100,4 @@ const resolvers = {
   }
 }
 
-  module.exports = resolvers;
+module.exports = resolvers;
