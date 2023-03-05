@@ -72,6 +72,8 @@ const typeDefs = gql`
     color: String, odometer: Int, notes: String ): Vehicle
     addServiceItem(description: String!, moreInfoLink: String): ServiceItem
     removeServiceItem(serviceItemId: ID!): ServiceItem
+    addReminder(user: String!, serviceType: String!, notifyStartDate: Int!, notifyFrequency: Int!, notifyType: String!, notes: String): Reminder
+    removeReminder(reminderId: ID!): Reminder
  }
 `;
 
