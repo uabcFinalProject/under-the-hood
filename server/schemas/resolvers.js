@@ -98,6 +98,31 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    addReminder: async (parent, { user, serviceType, notifyStartDate, notifyFrequency, notifyType, notes }, context) => {
+      if (context.user) {
+        const reminder = await Reminder.create({
+          user, 
+          serviceType, 
+          notifyStartDate, 
+          notifyFrequency, 
+          notifyType, 
+          notes
+        });
+        // await User.findOneAndUpdate({ _id: context.user._id }, { $addToSet: { reminder: reminder._id } }
+        // );
+        return reminder;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+
+    removeReminder: async (parent, { _id }, context) => {
+      if (context.user) {
+        const reminder = await Reminder.findOneAndDelete(
+          { _id });
+        return reminder;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
   }
 }
 
