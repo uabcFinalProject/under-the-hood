@@ -123,6 +123,14 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    updateReminder: async (parent, { _id }, context) => {
+      if (context.user) {
+        const update = await Reminder.findOneAndUpdate(
+          { _id });
+          return update;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
   }
 }
 
