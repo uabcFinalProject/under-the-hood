@@ -17,7 +17,7 @@ const resolvers = {
       return await Vehicle.find({});
     },
     vehicle: async (parent, { vehicleId }, context) => {
-      return Thought.findOne({ _id: vehicleId });
+      return Vehicle.findOne({ _id: vehicleId });
     },
     getAllServiceItems: async () => {
       return await ServiceItem.find({});
@@ -79,7 +79,7 @@ const resolvers = {
 
     addServiceItem: async (parent, { description, moreInfoLink }, context) => {
       if (context.user) {
-        const seviceItem = await ServiceItem.create({
+        const serviceItem = await ServiceItem.create({
           description,
           moreInfoLink,
         });
