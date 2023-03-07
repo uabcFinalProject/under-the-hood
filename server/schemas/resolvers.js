@@ -63,18 +63,18 @@ const resolvers = {
 
     addVehicle: async (parent, { vin, year, make, model, color, odometer, notes }, context) => {
       // this line mocks User "veruca@mail.com" as the owner
-      const id = '63ffa2dbe80cec05abf54a95';
-      const vehicle = await Vehicle.create(
-        { year, make, model, color, vin, odometer, notes }
-      );
-
-      await User.findOneAndUpdate(
-        { _id: id },
-        { $addToSet: { vehicles: vehicle._id } },
-        { new: true, runValidators: true, }
-      );
-
-      return vehicle;
+      // const id = '63ffa2dbe80cec05abf54a95';
+      if (context.user) {
+        const vehicle = await Vehicle.create(
+          { year, make, model, color, vin, odometer, notes }
+        );
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { vehicles: vehicle._id } },
+          { new: true, runValidators: true, }
+        )
+        return vehicle;
+      };
     },
 
     addServiceItem: async (parent, { description, moreInfoLink }, context) => {
@@ -101,11 +101,11 @@ const resolvers = {
     addReminder: async (parent, { user, serviceType, notifyStartDate, notifyFrequency, notifyType, notes }, context) => {
       if (context.user) {
         const reminder = await Reminder.create({
-          user, 
-          serviceType, 
-          notifyStartDate, 
-          notifyFrequency, 
-          notifyType, 
+          user,
+          serviceType,
+          notifyStartDate,
+          notifyFrequency,
+          notifyType,
           notes
         });
         // await User.findOneAndUpdate({ _id: context.user._id }, { $addToSet: { reminder: reminder._id } }
@@ -127,7 +127,7 @@ const resolvers = {
       if (context.user) {
         const update = await Reminder.findOneAndUpdate(
           { _id });
-          return update;
+        return update;
       }
       throw new AuthenticationError('You need to be logged in!');
     },

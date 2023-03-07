@@ -27,8 +27,8 @@ const typeDefs = gql`
 
   type Reminder {
     _id: ID
-    user: [User]
-    serviceType: [ServiceItem]
+    user: User
+    serviceType: ServiceItem
     notifyStartDate: String
     notifyFrequency: Int
     notifyType: String
