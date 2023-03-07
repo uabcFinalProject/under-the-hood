@@ -32,6 +32,7 @@ const reminderSchema = new Schema({
         type: String,
     }
 });
+//add boolean for "completed"
 
 const Reminder = model("Reminder", reminderSchema);
 
