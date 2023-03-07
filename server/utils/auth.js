@@ -9,7 +9,7 @@ module.exports = {
     
     // let token = req.body.token || req.query.token || req.headers.authorization;
 
-    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoic2VhbkB0ZXN0aW5nLmNvbSIsIl9pZCI6IjY0MDUxMjZiY2E0MjNkNGJiMDQyYmIwMyJ9LCJpYXQiOjE2NzgwNTM5OTUsImV4cCI6MTY3ODA2MTE5NX0.Duo6Iesu7a0oHBM1m_JcSGWlIZAf-RBie6LHzE84NQw"
+    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoibWFnZ2llQGVtYWlsLmNvbSIsIl9pZCI6IjY0MDY5YTJlNDJmNjMyZmIxZjE4YmYzNyJ9LCJpYXQiOjE2NzgxNTY3MjQsImV4cCI6MTY3ODE2MzkyNH0.XuQHvKjmsUFvWt27ZiO8j-wxYbpDEfqjxh-oAUnl0X0"
 
     // We split the token string into an array and return actual token
     if (req.headers.authorization) {

@@ -43,5 +43,6 @@ export const QUERY_ME = gql`
     }
   }
 `;
+//may need vehicles, reminders tied to only that user
 
 //Are we querying the user correctly? Should service history be tied to the user or the vehicle? What does QUERY_ME need?
