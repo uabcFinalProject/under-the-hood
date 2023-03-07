@@ -11,7 +11,7 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     users: async () => {
-      return await User.find({});
+      return await User.find({}).populate('vehicles');
     },
     vehicles: async () => {
       return await Vehicle.find({});
