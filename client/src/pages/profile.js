@@ -1,8 +1,18 @@
 import React from 'react';
+import { Card, Space } from 'antd';
 
 function Profile () {
     return (
-        <div></div>
+        <Space direction="vertical" size={16}>
+            <Card 
+            title="Default size card"
+            style={{
+                width: 300,
+            }}
+            >
+                <p>Your Car:</p>
+            </Card>
+        </Space>
     );
 }
 
