@@ -79,36 +79,36 @@ import { Menu } from 'antd';
 import { useState } from 'react';
 const items = [ 
   {
-    label: 'Home',
+    label: (<a href="/">Home</a>),
     key: 'home',
     icon: <HomeOutlined />,
   },
   {
-    label: 'Profile',
+    label: (<a href="/profile">Profile</a>),
     key: 'profile',
     icon: <ProfileOutlined />,
   },
   {
-    label: 'History',
+    label: (<a href="/history">History</a>),
     key: 'history',
     icon: <HistoryOutlined />,
   },
   {
-    label: 'Reminders',
+    label: (<a href="/reminder">Reminders</a>),
     key: 'reminders',
     icon: <AlertOutlined />,
   },
   {
-    label: 'Tools',
+    label: (<a href="/tools">Tools</a>),
     key: 'tools',
     icon: <ToolOutlined />,
   },
   {
-    label: 'Login',
+    label: (<a href="/login">Login</a>),
     key: 'login',
   },
   {
-    label: 'Sign Up',
+    label: (<a href="/signup">Sign Up</a>),
     key: 'signup',
   }
 ];
