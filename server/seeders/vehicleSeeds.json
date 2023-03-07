@@ -1,0 +1,18 @@
+[
+    {
+        "year": 2023,
+        "make": "Cadillac",
+        "model": "Escalade",
+        "color": "blue",
+        "vin": "1234123412345",
+        "odometer": 3002
+    },
+    {
+        "year": 2022,
+        "make": "Dodge",
+        "model": "Viper",
+        "color": "yellow",
+        "vin": "1234123456789",
+        "odometer": 42012
+    }
+]
