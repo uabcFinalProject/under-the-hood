@@ -26,7 +26,7 @@ const resolvers = {
       return ServiceItem.findOne({ _id });
     },
     reminders: async () => {
-      return await Reminder.find({});
+      return await Reminder.find({}).populate('user', 'serviceType');
     },
     reminder: async (parent, { _id }, context) => {
       return Reminder.findOne({ _id });
@@ -83,8 +83,6 @@ const resolvers = {
           description,
           moreInfoLink,
         });
-        // await User.findOneAndUpdate({ _id: context.user._id }, { $addToSet: { serviceItems: serviceItem._id } }
-        // );
         return serviceItem;
       }
       throw new AuthenticationError('You need to be logged in!');
@@ -98,7 +96,7 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    addReminder: async (parent, { user, serviceType, notifyStartDate, notifyFrequency, notifyType, notes }, context) => {
+    addReminder: async (parent, { user, vehicleId, serviceType, notifyStartDate, notifyFrequency, notifyType, notes }, context) => {
       if (context.user) {
         const reminder = await Reminder.create({
           user,
@@ -108,8 +106,8 @@ const resolvers = {
           notifyType,
           notes
         });
-        // await User.findOneAndUpdate({ _id: context.user._id }, { $addToSet: { reminder: reminder._id } }
-        // );
+        await Vehicle.findOneAndUpdate({ _id: vehicleId }, { $addToSet: { reminder: reminder._id } }
+        );
         return reminder;
       }
       throw new AuthenticationError('You need to be logged in!');
