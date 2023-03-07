@@ -1,14 +1,16 @@
 // Old Code:
 // import React from 'react';
-// import ReactDOM from 'react-dom/client';
+// import reactDOM from 'react-dom/client';
 // import './index.css';
 // import App from './App';
 // import reportWebVitals from './reportWebVitals';
-
-// const root = ReactDOM.createRoot(document.getElementById('root'));
+// import { BrowserRouter } from 'react-router-dom';
+// const root = reactDOM.createRoot(document.getElementById('root'));
 // root.render(
 //   <React.StrictMode>
+//     <BrowserRouter>
 //     <App />
+//     </BrowserRouter>
 //   </React.StrictMode>
 // );
 
@@ -18,15 +20,29 @@
 // reportWebVitals();
 
 // New Code:
-import React from 'react';
-import ReactDOM from 'react-dom';
-import 'antd/dist/reset.css';
-import './index.css';
-import App from './App';
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+// import 'antd/dist/reset.css';
+// import './index.css';
+// import App from './App';
 
-ReactDOM.render(
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+import "./index.css";
+import App from "./App";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    
+      <App />
+  
+  </React.StrictMode>
 );

@@ -1,5 +1,5 @@
-import React from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { Component } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {
   ApolloClient,
   InMemoryCache,
@@ -7,6 +7,7 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+
 
 import Nav from './components/nav/index';
 import Login from './components/login/index';
@@ -38,11 +39,11 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-function App() {
+function App () {
   return (
+    
     <ApolloProvider client={client}>
-      <Router>
-        <div>
+      <BrowserRouter>
           <Nav />
           <Routes>
               <Route path="/" element={<Home />}/>
@@ -54,13 +55,36 @@ function App() {
               <Route path="/signup" element={<Signup />}/>
               <Route path="*" element={<NoMatch />}></Route>
           </Routes>
-        </div>
-      </Router>
-
+    
+     
+              </BrowserRouter>
     </ApolloProvider>
+    
   );
+  
 }
+
 
 export default App;
 
 // currently displaying nav with everything commented out
+
+// import React, { Component } from 'react';
+// import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+// import Home from '../src/pages/home'
+// // import 'antd/dist/reset.css';
+// import './App.css';
+// class App extends Component {
+//   render() {
+//     return (
+//       <Router>
+//         <div>
+//           <Routes>
+//             <Route exact path='/' component={Home}  />
+//           </Routes>
+//         </div>
+//       </Router>
+//     )
+//   }
+// }
+// export default App;
