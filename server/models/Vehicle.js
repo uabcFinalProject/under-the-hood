@@ -33,14 +33,14 @@ const vehicleSchema = new Schema({
     notes: {
         type: String,
     },
-    reminders: {
+    reminders: [{
         type: Schema.Types.ObjectId,
         ref: 'Reminder',
-    },
-    serviceHistory: {
+    }],
+    serviceHistory: [{
         type: Schema.Types.ObjectId,
         ref: 'ServiceHistory'
-    }
+    }]
 });
 
 const Vehicle = model("Vehicle", vehicleSchema);
