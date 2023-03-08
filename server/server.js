@@ -16,7 +16,7 @@ const server = new ApolloServer({
   resolvers,
   context: authMiddleware,
   
-  // mocks: true,
+  // mocks: true, test
 });
 
 app.use(express.urlencoded({ extended: false }));
