@@ -10,6 +10,7 @@ const db = require('./config/connection');
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+
 // The ApolloServer with schema definition and set of resolvers.
 const server = new ApolloServer({
   typeDefs,
@@ -17,6 +18,16 @@ const server = new ApolloServer({
   context: authMiddleware,
   
   // mocks: true, test
+});
+
+app.use('/images', express.static(path.join(__dirname, '../client/images')));
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+}
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
 app.use(express.urlencoded({ extended: false }));

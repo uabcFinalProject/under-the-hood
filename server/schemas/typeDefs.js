@@ -11,8 +11,8 @@ const typeDefs = gql`
     vin: String
     odometer: Int
     notes: String
-    reminders: [Reminder!]
-    serviceHistory: [ServiceHistory!]
+    reminders: [Reminder]
+    serviceHistory: [ServiceHistory]
   }
 
   type User {
@@ -22,7 +22,7 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     phoneNumber: Int
-    vehicles: [Vehicle]
+    vehicles: [Vehicle!]!
   }
 
   type Reminder {
