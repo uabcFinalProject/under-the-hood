@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {
   ApolloClient,
@@ -9,9 +8,9 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 
-import Nav from './components/nav/index';
-import Login from './components/login/index';
-import Signup from './components/signUpForm/index';
+import Nav from './components/nav';
+import Login from './components/login';
+import Signup from './components/signup';
 import Home from './pages/home';
 import History from './pages/history';
 import Profile from './pages/profile';
