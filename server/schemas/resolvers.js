@@ -6,12 +6,15 @@ const resolvers = {
   Query: {
     me: async (parent, args, context) => {
       if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id });
+        return User.findOne({ _id: context.user._id }).populate("vehicles");
       }
       throw new AuthenticationError('You need to be logged in!');
     },
     users: async () => {
       return await User.find({}).populate('vehicles');
+    },
+    user: async (parent, { userId }) => {
+      return User.findOne({ _id: userId }).populate('vehicles');
     },
     vehicles: async () => {
       return await Vehicle.find({});
@@ -37,8 +40,8 @@ const resolvers = {
   },
   //do we need separate service items and reminders? are they combined? 
   Mutation: {
-    addUser: async (parent, { firstName, lastName, phoneNumber, email, password,  }) => {
-      const user = await User.create({ firstName, lastName, phoneNumber, email, password,  });
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
       const token = signToken(user)
       return { token, user };
     },

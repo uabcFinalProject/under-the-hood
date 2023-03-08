@@ -3,16 +3,6 @@ const bcrypt = require('bcrypt');
 
 const userSchema = new Schema(
   {
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      match: [/.+@.+\..+/, 'Must use a valid email address'],
-    },
-    password: {
-      type: String,
-      required: true,
-    },
     firstName: {
         type: String,
         required: true,
@@ -23,6 +13,16 @@ const userSchema = new Schema(
     },
     phoneNumber: {
         type: Number,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      match: [/.+@.+\..+/, 'Must use a valid email address'],
+    },
+    password: {
+      type: String,
+      required: true,
     },
     vehicles: [{
       type: Schema.Types.ObjectId,
