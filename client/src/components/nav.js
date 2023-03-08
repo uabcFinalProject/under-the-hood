@@ -113,12 +113,13 @@ const items = [
   }
 ];
 
+
 const Nav = () => {
   const [current, setCurrent] = useState('home');
   const onClick = (e) => {
     console.log('click ', e);
     setCurrent(e.key);
   };
-  return <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />;
+  return <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" style={{ background: '#F9F5DE'}} items={items} />;
 };
 export default Nav;
