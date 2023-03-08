@@ -4,6 +4,12 @@ const { User, Vehicle, Reminder, ServiceItem, ServiceHistory } = require('../mod
 
 const resolvers = {
   Query: {
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id }).populate("vehicles");
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
     users: async () => {
       return await User.find({}).populate('vehicles');
     },
@@ -42,8 +48,8 @@ const resolvers = {
   },
   //do we need separate service items and reminders? are they combined? 
   Mutation: {
-    addUser: async (parent, { email, password, firstName, lastName, phoneNumber }) => {
-      const user = await User.create({ email, password, firstName, lastName, phoneNumber });
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
       const token = signToken(user)
       return { token, user };
     },

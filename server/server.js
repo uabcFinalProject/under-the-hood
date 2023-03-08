@@ -11,6 +11,17 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 
+// class BasicLogging {
+//   requestDidStart({queryString, parsedQuery, variables}) {
+//     const query = queryString || print(parsedQuery);
+//     console.log(query);
+//     console.log(variables);
+//   }
+
+//   willSendResponse({graphqlResponse}) {
+//     console.log(JSON.stringify(graphqlResponse, null, 2));
+//   }
+// }
 // The ApolloServer with schema definition and set of resolvers.
 const server = new ApolloServer({
   typeDefs,
