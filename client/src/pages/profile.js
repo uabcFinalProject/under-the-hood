@@ -7,10 +7,10 @@ const { TabPane } = Tabs;
 
 const Profile = () => {
   return (
-    <div style={{ padding: '24px' }}>
+    <div style={{ padding: '24px', background: '#CBDCCE', height: '150vh' }}>
       <Row gutter={[24, 24]}>
         <Col xs={24} md={8}>
-          <Card>
+          <Card style={{ background: '#FAE4D1'}}>
             <div style={{ textAlign: 'center', marginBottom: '24px' }}>
               <Avatar size={128} icon={<CarTwoTone />} />
             </div>
@@ -23,8 +23,8 @@ const Profile = () => {
           </Card>
         </Col>
         <Col xs={24} md={16}>
-          <Card>
-            <Title level={4}>Your Vehicle</Title>
+          <Card style={{ background: '#FAE4D1'}}>
+            <Title level={1}>Your Vehicle</Title>
             <Divider />
             <ul>
                 <li>VIN:</li>
@@ -35,7 +35,7 @@ const Profile = () => {
                 <li>Color:</li>
                 <li>Notes:</li>
             </ul>
-            <Title level={4}>Reminders</Title>
+            <Title level={1}>Reminders</Title>
             <Divider />
             <Tabs defaultActiveKey="1">
               <TabPane tab="Upcoming" key="1">
