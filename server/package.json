@@ -1,5 +1,8 @@
 {
   "name": "under-the-hood-server",
+  "engines" : { 
+    "node" : "16.18.0"
+  },
   "version": "1.0.0",
   "description": "Backend server/database for Under The Hood application",
   "main": "server.js",
