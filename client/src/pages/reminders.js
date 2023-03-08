@@ -32,7 +32,7 @@ const Reminder = () => {
     <>
       <Select
         placeholder="Select a reminder"
-        style={{ width: 200, marginBottom: 16 }}
+        style={{ width: 200, marginBottom: 16, marginTop: '30px', marginLeft: '50px' }}
         value={selectedReminder}
         onChange={handleSelect}
       >
