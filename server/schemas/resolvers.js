@@ -37,8 +37,8 @@ const resolvers = {
   },
   //do we need separate service items and reminders? are they combined? 
   Mutation: {
-    addUser: async (parent, { email, password, firstName, lastName, phoneNumber }) => {
-      const user = await User.create({ email, password, firstName, lastName, phoneNumber });
+    addUser: async (parent, { firstName, lastName, phoneNumber, email, password,  }) => {
+      const user = await User.create({ firstName, lastName, phoneNumber, email, password,  });
       const token = signToken(user)
       return { token, user };
     },
