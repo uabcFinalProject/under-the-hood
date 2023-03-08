@@ -1,6 +1,6 @@
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Vehicle, Maintenance, Reminder, ServiceItem } = require('../models');
+const { User, Vehicle, Reminder, ServiceItem, ServiceHistory } = require('../models');
 
 const resolvers = {
   Query: {
@@ -36,6 +36,14 @@ const resolvers = {
     },
     serviceHistory: async () => {
       return await ServiceHistory.find({});
+    },
+    me: async (parent, args, context) => {
+      console.log(context.user);
+      if (context.user) {
+        // const userData = await User.findOne({ _id: context.user._id }).populate('vehicles');
+        return User.findOne({ _id: context.user._id }).populate('vehicles');
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
   },
   //do we need separate service items and reminders? are they combined? 
@@ -108,8 +116,20 @@ const resolvers = {
           notifyFrequency,
           notifyType,
           notes
+        },
+        {
+          new: true,
         });
-        await Vehicle.findOneAndUpdate({ _id: vehicleId }, { $addToSet: { reminder: reminder._id } }
+        console.log(reminder);
+        await Vehicle.findOneAndUpdate(
+          { _id: vehicleId }, 
+          { $addToSet: { 
+              reminder: reminder._id 
+            } 
+          },
+          {
+            new: true,
+          }
         );
         return reminder;
       }

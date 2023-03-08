@@ -1,60 +1,65 @@
-import React, { useState } from 'react';
-import { Button, Input, List } from 'antd';
+import { useState } from 'react';
+import { Select, Button, List, Typography } from 'antd';
+import { DeleteOutlined } from '@ant-design/icons';
+
+const { Option } = Select;
+const { Text } = Typography;
 
 const Reminder = () => {
-  const [reminders, setReminders] = useState([]);
-  const [inputValue, setInputValue] = useState('');
+  const [reminders, setReminders] = useState([
+    { id: 1, text: 'Test' },
+    { id: 2, text: 'Test' },
+    { id: 3, text: 'Test' },
+  ]);
+  const [selectedReminder, setSelectedReminder] = useState('');
 
-  const handleAddReminder = () => {
-    if (inputValue.trim() !== '') {
-      setReminders([...reminders, { text: inputValue, completed: false }]);
-      setInputValue('');
-    }
+  const handleSelect = (value) => {
+    setSelectedReminder(value);
   };
 
-  const handleCompleteReminder = (index) => {
-    const newReminders = [...reminders];
-    newReminders[index].completed = true;
-    setReminders(newReminders);
+  const handleAddReminder = () => {
+    const newId = reminders.length + 1;
+    setReminders([...reminders, { id: newId, text: selectedReminder }]);
+    setSelectedReminder('');
+  };
+
+  const handleDeleteReminder = (id) => {
+    const updatedReminders = reminders.filter((reminder) => reminder.id !== id);
+    setReminders(updatedReminders);
   };
 
   return (
-    <div>
-      <Input
-        placeholder="Enter a reminder"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        onPressEnter={handleAddReminder}
-      />
+    <>
+      <Select
+        placeholder="Select a reminder"
+        style={{ width: 200, marginBottom: 16 }}
+        value={selectedReminder}
+        onChange={handleSelect}
+      >
+        <Option value="Oil/oil filter changed">Oil/oil filter changed</Option>
+        <Option value="Wiper blades replacement">Wiper blades replacement</Option>
+        <Option value="Replace air filter">Scheduled maintenance</Option>
+      </Select>
       <Button type="primary" onClick={handleAddReminder}>
-        Add
+        Add Reminder
       </Button>
       <List
-        style={{ marginTop: 16 }}
-        bordered
         dataSource={reminders}
-        renderItem={(item, index) => (
-          <List.Item>
-            <span
-              style={{
-                textDecoration: item.completed ? 'line-through' : 'none',
-              }}
-            >
-              {item.text}
-            </span>
-            {!item.completed && (
+        renderItem={(reminder) => (
+          <List.Item
+            actions={[
               <Button
-                type="primary"
-                style={{ marginLeft: 8 }}
-                onClick={() => handleCompleteReminder(index)}
-              >
-                Complete
-              </Button>
-            )}
+                type="text"
+                icon={<DeleteOutlined />}
+                onClick={() => handleDeleteReminder(reminder.id)}
+              />,
+            ]}
+          >
+            <Text>{reminder.text}</Text>
           </List.Item>
         )}
       />
-    </div>
+    </>
   );
 };
 

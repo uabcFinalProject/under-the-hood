@@ -12,8 +12,8 @@ const typeDefs = gql`
     vin: String
     odometer: Int
     notes: String
-    reminders: [Reminder!]
-    serviceHistory: [ServiceHistory!]
+    reminders: [Reminder]
+    serviceHistory: [ServiceHistory]
   }
 
   type User {
@@ -23,7 +23,7 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     phoneNumber: Int
-    vehicles: [Vehicle]
+    vehicles: [Vehicle!]!
   }
 
   type Reminder {
@@ -51,7 +51,7 @@ const typeDefs = gql`
 
   type Query {
     users: [User]
-    user(firstName: String!, lastName: String!): User
+    user(userId: ID!): User
     me: User
     vehicles: [Vehicle]
     vehicle(vehicleId: ID!): Vehicle
@@ -67,14 +67,14 @@ const typeDefs = gql`
  }
 
  type Mutation {
-   addUser(firstName: String!, lastName: String!, phoneNumber: Int, email: String!, password: String!): Auth
    login(email: String!, password: String!): Auth
+   addUser(email: String!, password: String!, firstName: String!, lastName: String!, phoneNumber: Int): Auth
    addVehicle(
     vin: String!, year: Int!, make: String!, model: String!,
     color: String, odometer: Int, notes: String ): Vehicle
-    addServiceItem(description: String!, moreInfoLink: String): ServiceItem
-    removeServiceItem(serviceItemId: ID!): ServiceItem
-    addReminder(user: ID!, vehicleId: ID!, serviceType: ID!, notifyStartDate: Int!, notifyFrequency: Int!, notifyType: String!, notes: String): Reminder
+  addServiceItem(description: String!, moreInfoLink: String): ServiceItem
+  removeServiceItem(serviceItemId: ID!): ServiceItem
+  addReminder(user: ID!, vehicleId: ID!, serviceType: ID!, notifyStartDate: Int!, notifyFrequency: Int!, notifyType: String!, notes: String): Reminder
     removeReminder(reminderId: ID!): Reminder
     updateReminder(reminderId: ID!): Reminder
  }
