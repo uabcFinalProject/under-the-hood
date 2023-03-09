@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Select, DatePicker, TimePicker, Button, List, Form, Popconfirm } from 'antd';
+import { ADD_REMINDER } from '../utils/mutations';
 
 
 const reminders = [
@@ -19,7 +20,7 @@ const Reminder = () => {
   const [selectedReminder, setSelectedReminder] = useState('');
   const [remindersList, setRemindersList] = useState([]);
   
-
+  // const [addReminder, { error }] = useMutation(ADD_REMINDER);
   const handleFormSubmit = (values) => {
     const newReminder = {
       id: '',
@@ -45,6 +46,8 @@ const Reminder = () => {
     });
     setRemindersList(updatedList);
   };
+
+
 
   return (
     <div style={{ background: '#CBDCCE', height: '150vh' }}>
