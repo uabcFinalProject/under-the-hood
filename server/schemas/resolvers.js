@@ -1,6 +1,6 @@
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
-// const { User, Vehicle, Reminder, ServiceItem, ServiceHistory } = require('../models');
+const { Reminder, ServiceHistory, ServiceItem, User, Vehicle, } = require('../models');
 
 const resolvers = {
   Query: {
@@ -25,7 +25,9 @@ const resolvers = {
       .populate('serviceHistory');
     },
     vehicle: async (parent, { vehicleId }, context) => {
-      return Vehicle.findOne({ _id: vehicleId });
+      return Vehicle.findOne({ _id: vehicleId })
+      .populate('reminders')
+      .populate('serviceHistory');
     },
     getAllServiceItems: async () => {
       return ServiceItem.find({});
@@ -35,10 +37,15 @@ const resolvers = {
     },
     reminders: async () => {
       return Reminder.find({})
-      .populate('user', 'serviceType');
+      .populate('vehicle')
+      .populate('user')
+      .populate('serviceType');
     },
     reminder: async (parent, { _id }, context) => {
-      return Reminder.findOne({ _id });
+      return Reminder.findOne({ _id })
+      .populate('vehicle')
+      .populate('user')
+      .populate('serviceType');
     },
     serviceHistory: async () => {
       return ServiceHistory.find({});
@@ -118,7 +125,8 @@ const resolvers = {
 
     addReminder: async (parent, { vehicleId, user, serviceType, notifyStartDate, notifyFrequency, notifyType, notes }, context) => {
       if (context.user) {
-        const reminder = await Reminder.create({
+        const createReminder = await Reminder.create({
+          vehicle: vehicleId,
           user,
           serviceType,
           notifyStartDate,
@@ -127,13 +135,19 @@ const resolvers = {
           notes
         });
 
-        const vehicle = await Vehicle.findOneAndUpdate(
+        // const vehicle = 
+        await Vehicle.findOneAndUpdate(
           { _id: vehicleId }, 
-          { $addToSet: { reminders: reminder._id } },
+          { $addToSet: { reminders: createReminder._id } },
           { new: true }
-        );
+        ).populate('');
 
-        return reminder;
+        const newReminder = Reminder.findOneAndUpdate(createReminder._id)
+        .populate('vehicle')
+        .populate('user')
+        .populate('serviceType');
+
+        return newReminder;
       }
       throw new AuthenticationError('You need to be logged in!');
     },

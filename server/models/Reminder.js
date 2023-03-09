@@ -1,15 +1,24 @@
 const { Schema, model } = require('mongoose');
-const {User, Vehicle, ServiceItem, ServiceHistory} = require('../models');
 
 //Using the ref to connect the reminder to the user and the vehicle
 const reminderSchema = new Schema({
+    vehicle: {
+        type: Schema.Types.ObjectId,
+        ref: 'Vehicle',
+        required: true
+    },
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },
+    // serviceType: {
+    //     type: String,
+    //     required: true
+    // },
     serviceType: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'ServiceItem',
         required: true
     },
     notifyStartDate: {
