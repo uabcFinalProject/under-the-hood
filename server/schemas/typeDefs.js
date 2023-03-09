@@ -23,7 +23,7 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     phoneNumber: Int
-    vehicles: [Vehicle!]!
+    vehicles: [Vehicle!]
   }
 
   type Reminder {
@@ -66,15 +66,13 @@ const typeDefs = gql`
    user: User
  }
 
- type Mutation {
-   login(email: String!, password: String!): Auth
-   addUser(email: String!, password: String!, firstName: String!, lastName: String!, phoneNumber: String!): Auth
-   addVehicle(
-    vin: String!, year: Int!, make: String!, model: String!,
-    color: String, odometer: Int, notes: String ): Vehicle
-  addServiceItem(description: String!, moreInfoLink: String): ServiceItem
-  removeServiceItem(serviceItemId: ID!): ServiceItem
-  addReminder(user: ID!, vehicleId: ID!, serviceType: ID!, notifyStartDate: Int!, notifyFrequency: Int!, notifyType: String!, notes: String): Reminder
+  type Mutation {
+    login(email: String!, password: String!): Auth
+    addUser(email: String!, password: String!, firstName: String!, lastName: String!, phoneNumber: String!): Auth
+    addVehicle(vin: String!, year: Int!, make: String!, model: String!, color: String, odometer: Int, notes: String ): User
+    addServiceItem(description: String!, moreInfoLink: String): ServiceItem
+    removeServiceItem(serviceItemId: ID!): ServiceItem
+    addReminder(vehicleId: ID!, user: ID!, serviceType: ID!, notifyStartDate: String!, notifyFrequency: Int!, notifyType: String!, notes: String): Reminder
     removeReminder(reminderId: ID!): Reminder
     updateReminder(reminderId: ID!): Reminder
  }
