@@ -140,7 +140,7 @@ const resolvers = {
           { _id: vehicleId }, 
           { $addToSet: { reminders: createReminder._id } },
           { new: true }
-        ).populate('');
+        ).populate('reminders');
 
         const newReminder = Reminder.findOneAndUpdate(createReminder._id)
         .populate('vehicle')
