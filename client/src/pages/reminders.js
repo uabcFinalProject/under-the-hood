@@ -47,9 +47,9 @@ const Reminder = () => {
   };
 
   return (
-    <div>
+    <div style={{ background: '#CBDCCE', height: '150vh' }}>
       <Form onFinish={handleFormSubmit}>
-        <Form.Item label="Select a reminder">
+        <Form.Item label="Select a reminder" >
           <Select value={selectedReminder} onChange={setSelectedReminder}>
             {reminders.map((reminder) => (
               <Select.Option key={reminder} value={reminder}>

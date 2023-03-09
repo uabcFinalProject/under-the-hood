@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 //import { Link } from 'react-router-dom';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, Card } from 'antd';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations'
 
@@ -53,6 +53,7 @@ const SignUp = (props) => {
                                 <Link to="/profile">back to the homepage.</Link>
                             </p>
                         ) : ( */}
+            <Card style={{ background: '#CBDCCE', height: '100vh'}}>
             <Form
                 name='signUp'>
                 <Form.Item
@@ -128,7 +129,7 @@ const SignUp = (props) => {
                 </Form.Item>
                 {error && <div>{error.message}</div>}
             </Form>
-
+            </Card>
         </>
     );
 };
