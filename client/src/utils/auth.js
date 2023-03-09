@@ -20,6 +20,7 @@ class AuthService {
     try {
       const decoded = decode(token);
       if (decoded.exp < Date.now() / 1000) {
+        localStorage.removeItem('id_token');
         return true;
       } else return false;
     } catch (err) {
@@ -42,7 +43,7 @@ class AuthService {
     // Clear user token and profile data from localStorage
     localStorage.removeItem('id_token');
     // this will reload the page and reset the state of the application
-    window.location.assign('/');
+    window.location.reload('');
   }
 }
 
