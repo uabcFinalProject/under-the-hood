@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Select, DatePicker, TimePicker, Button, List, Form, Popconfirm } from 'antd';
 import { ADD_REMINDER } from '../utils/mutations';
+import { useMutation } from '@apollo/client';
+import Auth from '../utils/auth';
 
 
 const reminders = [
@@ -18,10 +20,14 @@ const reminders = [
 
 const Reminder = () => {
   const [selectedReminder, setSelectedReminder] = useState('');
+  const [selectedVehicle, setSelectedVehicle] =
+  useState('');
   const [remindersList, setRemindersList] = useState([]);
   
-  // const [addReminder, { error }] = useMutation(ADD_REMINDER);
-  const handleFormSubmit = (values) => {
+  const [addReminder, { error }] = useMutation(ADD_REMINDER);
+
+  const handleFormSubmit = async (values) => {
+    console.log(selectedVehicle)
     const newReminder = {
       id: '',
       reminder: selectedReminder,
@@ -29,6 +35,16 @@ const Reminder = () => {
       time: values.time.format('HH:mm'),
       completed: false,
     };
+    const { data } = await addReminder({
+      variables: {
+  //       "vehicleId":,
+  // "user":,
+  // "serviceType":,
+  // "notifyStartDate": ,
+  // "notifyFrequency": ,
+  // "notifyType": 
+      }
+    })
     setRemindersList([...remindersList, newReminder]);
     setSelectedReminder('');
   };
@@ -47,12 +63,24 @@ const Reminder = () => {
     setRemindersList(updatedList);
   };
 
+  console.log(Auth.getProfile().data.vehicles);
+  //use Auth.getProfile to get array of vehicles, then use array of vehicles to populate drop down menu, then fix form submit
+  const vehicles = Auth.getProfile().data.vehicles;
 
 
   return (
     <div>
       <Form onFinish={handleFormSubmit}>
         <Form.Item label="Select a reminder">
+          <select value={selectedVehicle} onChange={(event) => {
+            console.log(event.target)
+            setSelectedVehicle(event.target.value)}}>
+            {vehicles.map((vehicle) => {
+              return(
+                <option key={vehicle._id} value={vehicle._id}>{vehicle.model}</option>
+              )
+            })}
+          </select>
           <Select value={selectedReminder} onChange={setSelectedReminder}>
             {reminders.map((reminder) => (
               <Select.Option key={reminder} value={reminder}>
