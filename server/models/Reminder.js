@@ -9,8 +9,7 @@ const reminderSchema = new Schema({
         required: true
     },
     serviceType: {
-        type: Schema.Types.ObjectId,
-        ref: 'ServiceItem',
+        type: String,
         required: true
     },
     notifyStartDate: {
@@ -31,7 +30,12 @@ const reminderSchema = new Schema({
     },
     notes: {
         type: String,
-    }
+    },
+    completed: {
+        type: Boolean,
+        required: true,
+        default: false
+    } 
 });
 //add boolean for "completed"
 

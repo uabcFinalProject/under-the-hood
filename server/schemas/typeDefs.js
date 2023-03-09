@@ -29,7 +29,7 @@ const typeDefs = gql`
   type Reminder {
     _id: ID
     user: User
-    serviceType: ServiceItem
+    serviceType: String
     notifyStartDate: String
     notifyFrequency: Int
     notifyType: String
@@ -72,7 +72,7 @@ const typeDefs = gql`
     addVehicle(vin: String!, year: Int!, make: String!, model: String!, color: String, odometer: Int, notes: String ): User
     addServiceItem(description: String!, moreInfoLink: String): ServiceItem
     removeServiceItem(serviceItemId: ID!): ServiceItem
-    addReminder(vehicleId: ID!, user: ID!, serviceType: ID!, notifyStartDate: String!, notifyFrequency: Int!, notifyType: String!, notes: String): Reminder
+    addReminder(vehicleId: ID!, user: ID!, serviceType: String!, notifyStartDate: String!, notifyFrequency: Int!, notifyType: String!, notes: String): Reminder
     removeReminder(reminderId: ID!): Reminder
     updateReminder(reminderId: ID!): Reminder
  }
