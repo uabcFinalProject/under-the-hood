@@ -28,26 +28,30 @@ const Reminder = () => {
 
   const handleFormSubmit = async (values) => {
     console.log(selectedVehicle)
-    const newReminder = {
-      id: '',
-      reminder: selectedReminder,
-      date: values.date.format('YYYY-MM-DD'),
-      time: values.time.format('HH:mm'),
-      completed: false,
-    };
+    // const newReminder = {
+    //   id: '',
+    //   reminder: selectedReminder,
+    //   date: values.date.format('YYYY-MM-DD'),
+    //   time: values.time.format('HH:mm'),
+    //   completed: false,
+    // };
+    try{
     const { data } = await addReminder({
       variables: {
-  //       "vehicleId":,
-  // "user":,
-  // "serviceType":,
-  // "notifyStartDate": ,
-  // "notifyFrequency": ,
-  // "notifyType": 
+        vehicleId: selectedVehicle,
+        user: Auth.getProfile().data._id,
+        serviceType: selectedReminder,
+        notifyStartDate: values.date.format('YYYY-MM-DD'),
+        notifyFrequency: 0,
+        notifyType: 'tbd'
       }
     })
-    setRemindersList([...remindersList, newReminder]);
+    setRemindersList([...remindersList, Reminder]);
     setSelectedReminder('');
-  };
+  } catch (error) {
+    console.error(error);
+  }
+};
 
   const handleReminderDeletion = (id) => {
     setRemindersList(remindersList.filter((reminder) => reminder.id !== id));
@@ -64,15 +68,15 @@ const Reminder = () => {
   };
 
   console.log(Auth.getProfile().data.vehicles);
+  console.log(Auth.getProfile().data._id);
   //use Auth.getProfile to get array of vehicles, then use array of vehicles to populate drop down menu, then fix form submit
   const vehicles = Auth.getProfile().data.vehicles;
+  const user = Auth.getProfile().data.user;
 
 
   return (
     <div style={{ background: '#CBDCCE', height: '150vh' }}>
       <Form onFinish={handleFormSubmit}>
-      
-        <!-- CODE MERGED FROM "reminders" BRANCH -->
         <Form.Item label="Select a reminder">
           <select value={selectedVehicle} onChange={(event) => {
             console.log(event.target)
@@ -83,10 +87,8 @@ const Reminder = () => {
               )
             })}
           </select>
-
-        <!-- APPEARS TO REPLACE COMMENTED SECTION BELOW -->
-        <!--
-          <Form.Item label="Select a reminder" >
+          </Form.Item>
+          <Form.Item label="Select a reminder">
             <Select value={selectedReminder} onChange={setSelectedReminder}>
               {reminders.map((reminder) => (
                 <Select.Option key={reminder} value={reminder}>
@@ -94,7 +96,6 @@ const Reminder = () => {
                 </Select.Option>
               ))}
             </Select>
-          -->
         </Form.Item>
         <Form.Item label="Select a date" name="date" rules={[{ required: true, message: 'Please select a date' }]}>
           <DatePicker />
