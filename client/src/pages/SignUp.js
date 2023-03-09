@@ -58,10 +58,11 @@ const SignUp = (props) => {
                 <Form.Item
                     label='First Name'
                     rules={[
-                        { required: true, message: 'Please input your email!' }
+                        { required: true, message: 'Please input your First Name!' }
                     ]}
                 >
-                    <Input name={'firstName'}
+                    <Input 
+                        name={'firstName'}
                         type='text'
                         value={formState.firstName}
                         onChange={handleChange} />
@@ -70,10 +71,11 @@ const SignUp = (props) => {
                 <Form.Item
                     label='Last Name'
                     rules={[
-                        { required: true, message: 'Please input your email!' }
+                        { required: true, message: 'Please input your Last Name!' }
                     ]}
                 >
-                    <Input name={'lastName'}
+                    <Input 
+                        name={'lastName'}
                         type='text'
                         value={formState.lastName}
                         onChange={handleChange} />
@@ -82,10 +84,11 @@ const SignUp = (props) => {
                 <Form.Item
                     label='Phone Number'
                     rules={[
-                        { required: true, message: 'Please input your email!' }
+                        { required: true, message: 'Please input your Phone Number!' }
                     ]}
                 >
-                    <Input name={'phoneNumber'}
+                    <Input 
+                        name={'phoneNumber'}
                         type='text'
                         value={formState.phoneNumber}
                         onChange={handleChange} />
@@ -97,7 +100,8 @@ const SignUp = (props) => {
                         { required: true, message: 'Please input your email!' }
                     ]}
                 >
-                    <Input name={'email'}
+                    <Input 
+                        name={'email'}
                         type='email'
                         value={formState.email}
                         onChange={handleChange} />
@@ -107,14 +111,16 @@ const SignUp = (props) => {
                     label='Password'
                     onChange={handleChange}
                     rules={[
-                        { required: true, message: 'Please input your email!' }
+                        { required: true, message: 'Please input a password!' }
                     ]}
                 >
-                    <Input.Password name={'password'}
+                    <Input.Password 
+                        name={'password'}
                         type='password'
                         value={formState.password}
                         onChange={handleChange} />
                 </Form.Item>
+
                 <Form.Item>
                     <Button
                         onClick={handleFormSubmit} style={{ cursor: 'pointer' }} htmlType='submit'>Submit

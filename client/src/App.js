@@ -9,7 +9,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 import Nav from './components/nav';
-import Login from './components/login';
+import Login from './pages/login';
 import Signup from './pages/SignUp';
 import Home from './pages/home';
 import History from './pages/history';
