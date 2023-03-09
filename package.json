@@ -1,7 +1,7 @@
 {
   "name": "under-the-hood",
-  "engines" : { 
-    "node" : "16.18.0"
+  "engines": {
+    "node": "16.18.0"
   },
   "version": "1.0.0",
   "description": "Top-level package.json for Under The Hood app",
@@ -31,6 +31,8 @@
     "concurrently": "^7.6.0"
   },
   "dependencies": {
+    "antd": "^5.3.0",
+    "moment": "^2.29.4",
     "react-router-dom": "^6.8.2"
   }
 }
