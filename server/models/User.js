@@ -13,6 +13,9 @@ const userSchema = new Schema(
     },
     phoneNumber: {
         type: String,
+        minLength: 10,
+        maxLength: 10,
+        match: /^[0-9]{10}$/
     },
     email: {
       type: String,
