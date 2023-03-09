@@ -1,30 +1,31 @@
-import React, { useState } from 'react';
-import { Select, DatePicker, TimePicker, Button, List, Form, Popconfirm } from 'antd';
-import { ADD_REMINDER } from '../utils/mutations';
-import { useMutation } from '@apollo/client';
-import Auth from '../utils/auth';
+// import React, { useState } from 'react';
+// import { Select, DatePicker, TimePicker, Button, List, Form, Popconfirm } from 'antd';
+// import { ADD_REMINDER } from '../utils/mutations';
+// import { useMutation } from '@apollo/client';
+// import Auth from '../utils/auth';
 
 
-const reminders = [
-  'Oil Change',
-  'Air Filter Replacement',
-  'Check Engine Light Service',
-  'Brake Replacement',
-  'Spark Plug Replacement',
-  'Wheel Alignment',
-  'Battery Replacement',
-  'Tire Repairs or Replacement',
-  'Windshield Wipers Replacement',
-  'Loose Fuel Cap Repair or Replacement',
-];
+// const reminders = [
+//   'Oil Change',
+//   'Air Filter Replacement',
+//   'Check Engine Light Service',
+//   'Brake Replacement',
+//   'Spark Plug Replacement',
+//   'Wheel Alignment',
+//   'Battery Replacement',
+//   'Tire Repairs or Replacement',
+//   'Windshield Wipers Replacement',
+//   'Loose Fuel Cap Repair or Replacement',
+// ];
 
-const Reminder = () => {
-  const [selectedReminder, setSelectedReminder] = useState('');
-  const [selectedVehicle, setSelectedVehicle] =
-  useState('');
-  const [remindersList, setRemindersList] = useState([]);
+// const Reminder = () => {
+//   const [selectedReminder, setSelectedReminder] = useState('');
+//   const [selectedVehicle, setSelectedVehicle] =
+//   useState('');
+//   const [remindersList, setRemindersList] = useState([]);
   
-  const [addReminder, { error }] = useMutation(ADD_REMINDER);
+//   const [addReminder, { error }] = useMutation(ADD_REMINDER);
+
 
   const handleFormSubmit = async (values) => {
     console.log(selectedVehicle)
@@ -53,19 +54,19 @@ const Reminder = () => {
   }
 };
 
-  const handleReminderDeletion = (id) => {
-    setRemindersList(remindersList.filter((reminder) => reminder.id !== id));
-  };
+//   const handleReminderDeletion = (id) => {
+//     setRemindersList(remindersList.filter((reminder) => reminder.id !== id));
+//   };
 
-  const handleReminderCompletion = (id) => {
-    const updatedList = remindersList.map((reminder) => {
-      if (reminder.id === id) {
-        return { ...reminder, completed: !reminder.completed };
-      }
-      return reminder;
-    });
-    setRemindersList(updatedList);
-  };
+//   const handleReminderCompletion = (id) => {
+//     const updatedList = remindersList.map((reminder) => {
+//       if (reminder.id === id) {
+//         return { ...reminder, completed: !reminder.completed };
+//       }
+//       return reminder;
+//     });
+//     setRemindersList(updatedList);
+//   };
 
   console.log(Auth.getProfile().data.vehicles);
   console.log(Auth.getProfile().data._id);
@@ -133,4 +134,5 @@ const Reminder = () => {
   );
 };
 
-export default Reminder;
+
+// export default Reminder;

@@ -18,6 +18,7 @@ export const QUERY_USER = gql`
         odometer
         notes
         reminders {
+            vehicle
             user
             serviceType
             notifyStartDate
