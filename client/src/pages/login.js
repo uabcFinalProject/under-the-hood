@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 //import { Link } from 'react-router-dom';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, Card } from 'antd';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations'
 
@@ -51,6 +51,7 @@ export default function Login() {
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : ( */}
+      <Card style={{ background: '#CBDCCE', height: '100vh'}}>
       <Form
         name='login'>
         <Form.Item
@@ -91,6 +92,7 @@ export default function Login() {
         </Form.Item>
         {error && <div>{error.message}</div>}
       </Form>
+      </Card>
     </>
   );
 };

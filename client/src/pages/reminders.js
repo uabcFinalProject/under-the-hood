@@ -69,8 +69,10 @@ const Reminder = () => {
 
 
   return (
-    <div>
+    <div style={{ background: '#CBDCCE', height: '150vh' }}>
       <Form onFinish={handleFormSubmit}>
+      
+        <!-- CODE MERGED FROM "reminders" BRANCH -->
         <Form.Item label="Select a reminder">
           <select value={selectedVehicle} onChange={(event) => {
             console.log(event.target)
@@ -81,13 +83,18 @@ const Reminder = () => {
               )
             })}
           </select>
-          <Select value={selectedReminder} onChange={setSelectedReminder}>
-            {reminders.map((reminder) => (
-              <Select.Option key={reminder} value={reminder}>
-                {reminder}
-              </Select.Option>
-            ))}
-          </Select>
+
+        <!-- APPEARS TO REPLACE COMMENTED SECTION BELOW -->
+        <!--
+          <Form.Item label="Select a reminder" >
+            <Select value={selectedReminder} onChange={setSelectedReminder}>
+              {reminders.map((reminder) => (
+                <Select.Option key={reminder} value={reminder}>
+                  {reminder}
+                </Select.Option>
+              ))}
+            </Select>
+          -->
         </Form.Item>
         <Form.Item label="Select a date" name="date" rules={[{ required: true, message: 'Please select a date' }]}>
           <DatePicker />
