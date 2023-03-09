@@ -22,7 +22,7 @@ const typeDefs = gql`
     password: String
     firstName: String
     lastName: String
-    phoneNumber: Int
+    phoneNumber: String
     vehicles: [Vehicle!]
   }
 
