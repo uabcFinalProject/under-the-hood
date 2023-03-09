@@ -23,10 +23,10 @@ export const LOGIN_USER = gql`
 `;
 export const ADD_REMINDER = gql`
 mutation addReminder($vehicleId: ID!, $user: ID!, $serviceType: ID!, $notifyStartDate: String!, $notifyFrequency: Int!, $notifyType: String!, $notes: String) {
-  addReminder(vehicle: $vehicleId, user: $user, serviceType: $serviceType, notifyStartDate: $notifyStartDate, notifyFrequency: $notifyFrequency, notifyType: $notifyType, notes: $notes) {
+  addReminder(vehicleId: $vehicleId, user: $user, serviceType: $serviceType, notifyStartDate: $notifyStartDate, notifyFrequency: $notifyFrequency, notifyType: $notifyType, notes: $notes) {
     vehicle {
       _id
-      reminder {
+      reminders {
         _id
         user
         serviceType
@@ -34,6 +34,10 @@ mutation addReminder($vehicleId: ID!, $user: ID!, $serviceType: ID!, $notifyStar
         notifyFrequency
         notifyType
         notes
+      }
+      user {
+        _id
+        email
       }
     }
   }
