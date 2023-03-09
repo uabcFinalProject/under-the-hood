@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table, Card, } from 'antd';
 
+
 const columns = [
     {
       title: 'Date',
@@ -11,11 +12,6 @@ const columns = [
       title: 'Details',
       dataIndex: 'details',
       key: 'details',
-    },
-    {
-      title: 'Amount',
-      dataIndex: 'amount',
-      key: 'amount',
     },
   ];
 
@@ -37,7 +33,7 @@ const columns = [
   const History = () => {
     return (
       <div>
-        <Card title="History">
+        <Card title="History"  style={{ background: '#CBDCCE', height: '100vh' }}>
           <Table columns={columns} dataSource={data} />
         </Card>
       </div>

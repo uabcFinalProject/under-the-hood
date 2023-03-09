@@ -15,10 +15,8 @@ function Home() {
           <h2 style={{ fontSize: '35px', marginTop: '-50px' }}>Welcome to Under The Hood</h2>
           <p style={{ fontSize: '20px', marginTop: '-20px' }}>Helping you remember all your car's service needs!</p>
           <p style={{ fontSize: '20px', marginTop: '-15px' }}>Please sign in or create an account to get started</p>
-          <Button size="large" style={{ background: '#615D7A', marginRight: '10px' }}>
-            Sign In
-          </Button>
-          <Button size="large" style={{ background: '#615D7A'}}>Create Account</Button>
+          <a href='/login'><Button size="large" style={{ background: '#615D7A', marginRight: '10px' }}> Sign In </Button></a>
+          <a href='signup'><Button size="large" style={{ background: '#615D7A'}}>Create Account</Button></a>
         </div>
       </Content>
     </Layout>
