@@ -5,7 +5,9 @@
 
 ## Description
 
-A vehicle maintenance reminder, tracking and scheduling application. Under the Hood is designed to allow users to create a login, add their vehicle information, set up reminders for needed service and maintenance tasks, and store a history for each vehicle. It is a React app built using Node.js, MongoDB, Express.js, Apollo, GraphQL, JWT, and Ant Design. 
+A vehicle maintenance reminder, tracking and scheduling application. Under the Hood is designed to allow users to create a login, add their vehicle information, set up reminders for needed service and maintenance tasks, and store a history for each vehicle. It is a React app built using Node.js, MongoDB, Express.js, Apollo, GraphQL, JWT, and Ant Design. <br>
+
+![homepage](./assets/uth-repo-pic.JPG)
 
 ## Table of Contents
 
