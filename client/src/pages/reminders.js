@@ -39,8 +39,8 @@ const Reminder = () => {
     try{
     const { data } = await addReminder({
       variables: {
-        // vehicleId: selectedVehicle,
-        vehicleId: "640a4771f5b49ff1e1a06685",
+        vehicleId: selectedVehicle,
+        // vehicleId: "640a4771f5b49ff1e1a06685",
         user: Auth.getProfile().data._id,
         // serviceType: selectedReminder,
         serviceType: "Oil Change",
@@ -77,21 +77,23 @@ const Reminder = () => {
   const vehicles = Auth.getProfile().data.vehicles;
   const user = Auth.getProfile().data.user;
 
-
+  const handleVehicleSelection = (value, event) => {
+    setSelectedVehicle(value)
+    console.log(value);
+  }
   return (
     <div style={{ background: '#CBDCCE', height: '150vh' }}>
       {/* <Form onFinish={handleFormSubmit}> */}
       <Form>
-        <Form.Item label="Select a reminder">
-          <select value={selectedVehicle} onChange={(event) => {
-            console.log(event.target)
-            setSelectedVehicle(event.target.value)}}>
-            {vehicles.map((vehicle) => {
-              return(
-                <option key={vehicle._id} value={vehicle._id}>{vehicle.model}</option>
-              )
-            })}
-          </select>
+        <Form.Item>
+      <Select onSelect={(value, event) => {
+            handleVehicleSelection(value, event)
+            }}>
+            {vehicles.map((vehicle) => 
+            (
+                <Select.Option key={vehicle._id} value={vehicle._id}>{vehicle.model}</Select.Option>
+            ))}
+          </Select>
           </Form.Item>
           <Form.Item label="Select a reminder">
             <Select value={selectedReminder} onChange={setSelectedReminder}>
