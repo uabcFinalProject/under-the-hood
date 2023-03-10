@@ -4,13 +4,13 @@ const { Reminder, ServiceHistory, ServiceItem, User, Vehicle, } = require('../mo
 
 const resolvers = {
   Query: {
-    me: async (parent, args, context) => {
-      if (context.user) {
-        return User.findOne({ _id: context.user._id })
-        .populate('vehicles');
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
+    // me: async (parent, args, context) => {
+    //   if (context.user) {
+    //     return User.findOne({ _id: context.user._id })
+    //     .populate('vehicles');
+    //   }
+    //   throw new AuthenticationError('You need to be logged in!');
+    // },
     users: async () => {
       return User.find({})
       .populate('vehicles');
@@ -39,13 +39,13 @@ const resolvers = {
       return Reminder.find({})
       .populate('vehicle')
       .populate('user')
-      .populate('serviceType');
+      // .populate('serviceType');
     },
     reminder: async (parent, { _id }, context) => {
       return Reminder.findOne({ _id })
       .populate('vehicle')
       .populate('user')
-      .populate('serviceType');
+      // .populate('serviceType');
     },
     serviceHistory: async () => {
       return ServiceHistory.find({});
@@ -55,7 +55,7 @@ const resolvers = {
       if (context.user) {
         // const userData = await User.findOne({ _id: context.user._id }).populate('vehicles');
         return User.findOne({ _id: context.user._id })
-        .populate('vehicles');
+        .populate('vehicles')
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -125,7 +125,9 @@ const resolvers = {
     },
 
     addReminder: async (parent, { vehicleId, user, serviceType, notifyStartDate, notifyFrequency, notifyType, notes }, context) => {
-      if (context.user) {
+      console.log(context.body);
+      // WE KNOW USER _ID IS COMING OVER, BUT WE'RE APPARENTLY NOT GETTING USER TOKEN
+      // if (context.user) {
         const createReminder = await Reminder.create({
           vehicle: vehicleId,
           user,
@@ -146,11 +148,11 @@ const resolvers = {
         const newReminder = Reminder.findOneAndUpdate(createReminder._id)
         .populate('vehicle')
         .populate('user')
-        .populate('serviceType');
+        // .populate('serviceType');
 
         return newReminder;
-      }
-      throw new AuthenticationError('You need to be logged in!');
+      // }
+      // throw new AuthenticationError('You need to be logged in!');
     },
 
     removeReminder: async (parent, { _id }, context) => {

@@ -22,13 +22,13 @@ export const LOGIN_USER = gql`
   }
 `;
 export const ADD_REMINDER = gql`
-mutation addReminder($vehicleId: ID!, $user: ID!, $serviceType: ID!, $notifyStartDate: String!, $notifyFrequency: Int!, $notifyType: String!, $notes: String) {
-  addReminder(vehicle: $vehicleId, user: $user, serviceType: $serviceType, notifyStartDate: $notifyStartDate, notifyFrequency: $notifyFrequency, notifyType: $notifyType, notes: $notes) {
+mutation addReminder($vehicleId: ID!, $user: ID!, $serviceType: String!, $notifyStartDate: String!, $notifyFrequency: Int!, $notifyType: String!, $notes: String) {
+  addReminder(vehicleId: $vehicleId, user: $user, serviceType: $serviceType, notifyStartDate: $notifyStartDate, notifyFrequency: $notifyFrequency, notifyType: $notifyType, notes: $notes) {
     vehicle {
       _id
-      reminder {
+      reminders {
         _id
-        user
+        user { _id }
         serviceType
         notifyStartDate
         notifyFrequency

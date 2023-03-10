@@ -39,10 +39,13 @@ const Reminder = () => {
     try{
     const { data } = await addReminder({
       variables: {
-        vehicleId: selectedVehicle,
+        // vehicleId: selectedVehicle,
+        vehicleId: "640a4771f5b49ff1e1a06685",
         user: Auth.getProfile().data._id,
-        serviceType: selectedReminder,
-        notifyStartDate: values.date.format('YYYY-MM-DD'),
+        // serviceType: selectedReminder,
+        serviceType: "Oil Change",
+        // notifyStartDate: values.date.format('YYYY-MM-DD'),
+        notifyStartDate: "4/2/2023",
         notifyFrequency: 0,
         notifyType: 'tbd'
       }
@@ -77,7 +80,8 @@ const Reminder = () => {
 
   return (
     <div style={{ background: '#CBDCCE', height: '150vh' }}>
-      <Form onFinish={handleFormSubmit}>
+      {/* <Form onFinish={handleFormSubmit}> */}
+      <Form>
         <Form.Item label="Select a reminder">
           <select value={selectedVehicle} onChange={(event) => {
             console.log(event.target)
@@ -105,7 +109,7 @@ const Reminder = () => {
           <TimePicker />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" onClick={handleFormSubmit}>
             Add Service Reminder
           </Button>
         </Form.Item>

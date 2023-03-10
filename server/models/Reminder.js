@@ -12,15 +12,15 @@ const reminderSchema = new Schema({
         ref: 'User',
         required: true
     },
-    // serviceType: {
-    //     type: String,
-    //     required: true
-    // },
     serviceType: {
-        type: Schema.Types.ObjectId,
-        ref: 'ServiceItem',
+        type: String,
         required: true
     },
+    // serviceType: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'ServiceItem',
+    //     required: true
+    // },
     notifyStartDate: {
         type: Date,
         required: true,
