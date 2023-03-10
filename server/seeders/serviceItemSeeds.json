@@ -1,0 +1,20 @@
+[
+    {
+        "description": "Oil Change"
+    },
+    {
+        "description": "Replace Air Filter"
+    },
+    {
+        "description": "Replace Timing Belt",
+        "moreInfoLink": "https://www.autozone.com/diy/belts/what-is-a-timing-belt"
+    },
+    {
+        "description": "Rotate Tires",
+        "moreInfoLink": "https://www.bridgestonetire.com/learn/maintenance/tire-rotation/"
+    },
+    {
+        "description": "Register Vehicle",
+        "moreInfoLink": "https://www.bridgestonetire.com/learn/maintenance/tire-rotation/"
+    }
+]
