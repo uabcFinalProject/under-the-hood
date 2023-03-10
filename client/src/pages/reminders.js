@@ -85,7 +85,7 @@ const Reminder = () => {
     <div style={{ background: '#CBDCCE', height: '150vh' }}>
       {/* <Form onFinish={handleFormSubmit}> */}
       <Form>
-        <Form.Item>
+        <Form.Item label="Select a vehicle">
       <Select onSelect={(value, event) => {
             handleVehicleSelection(value, event)
             }}>
