@@ -4,12 +4,13 @@ import { CarTwoTone } from '@ant-design/icons';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import { ADD_VEHICLE } from '../utils/mutations';
+import { ADD_REMINDER } from '../utils/mutations';
 import Auth from '../utils/auth';
 import { Header } from 'antd/es/layout/layout';
 const { Title } = Typography;
 const { TabPane } = Tabs;
 const Profile = () => {
-  const { data } = useQuery(QUERY_ME);
+  const { data } = useQuery(QUERY_ME, ADD_VEHICLE, ADD_REMINDER);
   const user = Auth.getProfile().data
   console.log("show auth: ", Auth.getProfile())
  // const user = data?.me || {};
