@@ -3,6 +3,7 @@ import { Avatar, Card, Col, Divider, Alert, Row, Tabs, Typography, Form, Input, 
 import { CarTwoTone } from '@ant-design/icons';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
+import { ADD_VEHICLE } from '../utils/mutations';
 import Auth from '../utils/auth';
 import { Header } from 'antd/es/layout/layout';
 const { Title } = Typography;
@@ -70,20 +71,20 @@ const Profile = () => {
             <Title level={1}>Your Vehicle</Title>
             <Divider />
             <ul>
-                <li>VIN:</li>
-                <li>Odometer:</li>
-                <li>Make:</li>
-                <li>Model:</li>
-                <li>Year:</li>
-                <li>Color:</li>
-                <li>Notes:</li>
+                <li>VIN: </li>{user.vehicles.vin}
+                <li>Odometer: </li>{user.vehicles.odometer}
+                <li>Make: </li>{user.vehicles.make}
+                <li>Model: </li>{user.vehicles.model}
+                <li>Year: </li>{user.vehicles.year}
+                <li>Color: </li>{user.vehicles.color}
+                <li>Notes: </li>{user.vehicles.notes}
             </ul>
             <Title level={1}>Reminders</Title>
             <Divider />
             <Tabs defaultActiveKey="1">
               <TabPane tab="Upcoming" key="1">
                 <ul>
-                  <li>Oil Change</li>
+                  <li>Next Reminder: </li>{user.vehicle.reminders.serviceType}
                   <li>Tire Rotation</li>
                   <li>Air Filter Replacement</li>
                 </ul>
