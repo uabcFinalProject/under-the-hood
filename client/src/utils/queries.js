@@ -43,6 +43,30 @@ export const QUERY_ME = gql`
       email
       firstName
       lastName
+      vehicles {
+        _id
+        year
+        make
+        model
+        color
+        vin
+        odometer
+        notes
+        reminders {
+            vehicle
+            user
+            serviceType
+            notifyStartDate
+            notifyFrequency
+            notifyType
+            notes
+        }
+        serviceHistory {
+            serviceItem
+            serviceDate
+            serviceProvider
+        }
+      }
     }
   }
 `;
