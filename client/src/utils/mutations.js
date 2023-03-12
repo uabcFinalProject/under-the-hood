@@ -39,4 +39,24 @@ mutation addReminder($vehicleId: ID!, $user: ID!, $serviceType: String!, $notify
   }
 }`;
 
+export const ADD_VEHICLE = gql`
+mutation addVehicle($vin: String!, $year: Int!, $make: String!, $model: String!, $color: String, $odometer: Int, $notes: String) {
+  addVehicle(vin: $vin, year: $year, make: $make, model: $model, color: $color, odometer: $odometer, notes: $notes) {
+    user {
+      _id
+      vehicles {
+        _id
+        vin
+        year
+        make
+        model
+        color
+        odometer
+        notes
+      }
+    }
+  }
+}
+`
+
 

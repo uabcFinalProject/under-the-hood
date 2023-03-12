@@ -7,8 +7,6 @@
 
 A vehicle maintenance reminder, tracking and scheduling application. Under the Hood is designed to allow users to create a login, add their vehicle information, set up reminders for needed service and maintenance tasks, and store a history for each vehicle. It is a React app built using Node.js, MongoDB, Express.js, Apollo, GraphQL, JWT, and Ant Design. <br>
 
-![homepage](./assets/uth-repo-pic.JPG)
-
 ## Table of Contents
 
 - [Installation](#installation)
@@ -42,13 +40,15 @@ After you clone the repository...
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
+After you have installed this repo and installed it you can run this on `localhost:3000` by running `npm run develop` in the root of the repo or you can visit our deployed page at the link below. <br>
+After first loading in you will be directed to the homepage:<br>
+![homepage](./assets/uth-repo-pic.JPG)<br>
+Once you have signed up, your profile page is where you can add a vehicle to your profile, see the vehicles you have already added and upcoming / future reminders.<br>
+![profile](./assets/uth-profile.JPG)<br>
+Under the Hood is also a mobile friendly site!<br>
+![mobile](./assets/mobilefriendly.JPG)
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
 
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
 
 Under the Hood has been deployed using Heroku. You can try it out as a user by clicking this [Link](https://under-the-hood.herokuapp.com/).
 
@@ -69,8 +69,8 @@ MIT license. Click the license badge at the top for license details.
 ## Questions
 
 For questions regarding this project the names in the credits section link to the individuals' github profiles or you may use the emails below.
-* Maggie Delaney - 
-* Isabella Pettini - 
-* Parker Scully - 
+* Maggie Delaney - margaretrdelaney@gmail.com
+* Isabella Pettini - isabellapierce93@gmail.com
+* Parker Scully - pscully05@gmail.com
 * Jessica Oboh - jessb216@gmail.com
-* Sean Collins -  
+* Sean Collins -  iseanc@hotmail.com
