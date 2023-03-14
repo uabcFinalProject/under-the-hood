@@ -2,17 +2,23 @@ import React from 'react';
 import { Avatar, Card, Col, Divider, Alert, Row, Tabs, Typography, Form, Input, Button } from 'antd';
 import { CarTwoTone } from '@ant-design/icons';
 import { useQuery } from '@apollo/client';
+import { useMutation} from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import { ADD_VEHICLE } from '../utils/mutations';
-import { ADD_REMINDER } from '../utils/mutations';
+// import { ADD_REMINDER } from '../utils/mutations';
 import Auth from '../utils/auth';
 import { Header } from 'antd/es/layout/layout';
 const { Title } = Typography;
 const { TabPane } = Tabs;
+
 const Profile = () => {
-  const { data } = useQuery(QUERY_ME, ADD_VEHICLE, ADD_REMINDER);
-  const user = Auth.getProfile().data
-  console.log("show auth: ", Auth.getProfile())
+  const { data } = useQuery(QUERY_ME);
+  // const { data: meData} = useQuery(QUERY_ME);
+  // const [ addVehicle, {vehicleError }] = useMutation(ADD_VEHICLE);
+  // const [ addReminder, { reminderError }] = useMutation(ADD_REMINDER);
+  
+  const user = Auth.getProfile().data;
+  console.log(user);
  // const user = data?.me || {};
   if (!Auth.loggedIn()) {
     return (
@@ -72,20 +78,21 @@ const Profile = () => {
             <Title level={1}>Your Vehicle</Title>
             <Divider />
             <ul>
-                <li>VIN: </li>{user.vehicles.vin}
-                <li>Odometer: </li>{user.vehicles.odometer}
-                <li>Make: </li>{user.vehicles.make}
-                <li>Model: </li>{user.vehicles.model}
-                <li>Year: </li>{user.vehicles.year}
-                <li>Color: </li>{user.vehicles.color}
-                <li>Notes: </li>{user.vehicles.notes}
+                <li>VIN: </li>{user.vehicles[0].vin}
+                <li>Odometer: </li>{user.vehicles[0].odometer}
+                <li>Make: </li>{user.vehicles[0].make}
+                <li>Model: </li>{user.vehicles[0].model}
+                <li>Year: </li>{user.vehicles[0].year}
+                <li>Color: </li>{user.vehicles[0].color}
+                <li>Notes: </li>{user.vehicles[0].notes}
             </ul>
             <Title level={1}>Reminders</Title>
             <Divider />
             <Tabs defaultActiveKey="1">
               <TabPane tab="Upcoming" key="1">
                 <ul>
-                  <li>Next Reminder: </li>{user.vehicle.reminders.serviceType}
+                  <li>Next Reminder: </li>
+                  {/* {user.vehicle.reminders.serviceType} */}
                   <li>Tire Rotation</li>
                   <li>Air Filter Replacement</li>
                 </ul>
