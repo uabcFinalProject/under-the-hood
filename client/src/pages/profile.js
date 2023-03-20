@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState }from 'react';
 import { Avatar, Card, Col, Divider, Alert, Row, Tabs, Typography, Form, Input, Button } from 'antd';
 import { CarTwoTone } from '@ant-design/icons';
 import { useQuery } from '@apollo/client';
@@ -12,6 +12,8 @@ const { Title } = Typography;
 const { TabPane } = Tabs;
 
 const Profile = () => {
+  const [formState, setFormState] = useState({ vin: '', odometer: '',  make: '', model: '', year: '', color: '', notes: '',});
+  const [addVehicle, { error }] = useMutation(ADD_VEHICLE);
   const { data } = useQuery(QUERY_ME);
   // const { data: meData} = useQuery(QUERY_ME);
   // const [ addVehicle, {vehicleError }] = useMutation(ADD_VEHICLE);
@@ -25,6 +27,26 @@ const Profile = () => {
       <Alert textAlign='center'>User needs to login to render profile</Alert>
     )
   }
+  
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+    try {
+      const { data } = await addVehicle({
+        variables: { ...formState },
+      });
+      console.log('data', data)
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.error(e);
+    }
+    
+    setFormState({
+      email: '',
+      password: '',
+    });
+  };
+  
   return (
     <div style={{ padding: '24px', background: '#CBDCCE', height: '150vh' }}>
       <Row gutter={[24, 24]}>
@@ -66,7 +88,7 @@ const Profile = () => {
                  <Input.TextArea />
               </Form.Item>
                <Form.Item>
-                 <Button size="large" style={{ background: '#615D7A' }} htmlType="submit">
+                 <Button onClick = {handleFormSubmit} size="large" style={{ background: '#615D7A' }} htmlType="submit">
                    Submit
                </Button>
               </Form.Item>
