@@ -20,30 +20,37 @@ const Profile = () => {
   // const [ addReminder, { reminderError }] = useMutation(ADD_REMINDER);
   
   const user = Auth.getProfile().data;
-  console.log(user);
+  // console.log(user);
  // const user = data?.me || {};
   if (!Auth.loggedIn()) {
     return (
       <Alert textAlign='center'>User needs to login to render profile</Alert>
     )
   }
+
+  const handleAddVehicle = (event) => {
+    const { name, value } = event.target;
+    console.log('handleLogin', event.target)
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
   
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
+    console.log("formState", formState);
     try {
       const { data } = await addVehicle({
         variables: { ...formState },
       });
-      console.log('data', data)
-      Auth.login(data.login.token);
+      // Auth.login(data.login.token);
     } catch (e) {
       console.error(e);
     }
     
     setFormState({
-      email: '',
-      password: '',
+      vin: '', odometer: '',  make: '', model: '', year: '', color: '', notes: '',
     });
   };
   
@@ -66,26 +73,62 @@ const Profile = () => {
             </Descriptions> */}
             <Form>
               <Title level={4}>Add A Vehicle:</Title>
-               <Form.Item name="field1" label="VIN #:">
-                 <Input />
+               <Form.Item name="field1" label="VIN #:" >
+                <Input
+                  name={'vin'}
+                  type='vin'
+                  placeholder='VIN'
+                  value={formState.vin}
+                  onChange={handleAddVehicle} />
                </Form.Item>
                <Form.Item name="field2" label="Odometer:">
-                 <Input />
+                 <Input
+                  name={'odometer'}
+                  type='odometer'
+                  placeholder='Odometer'
+                  value={formState.odometer}
+                  onChange={handleAddVehicle} />
                </Form.Item>
                <Form.Item name="field3" label="Make:">
-                 <Input />
+                 <Input
+                  name={'make'}
+                  type='make'
+                  placeholder='Make'
+                  value={formState.make}
+                  onChange={handleAddVehicle} />
               </Form.Item>
                <Form.Item name="field4" label="Model:">
-                 <Input />
+                 <Input
+                  name={'model'}
+                  type='model'
+                  placeholder='Model'
+                  value={formState.model}
+                  onChange={handleAddVehicle} />
                </Form.Item>
                <Form.Item name="field5" label="Year:">
-                 <Input />
+                 <Input
+                  name={'year'}
+                  type='year'
+                  placeholder='Year'
+                  value={formState.year}
+                  onChange={handleAddVehicle} />
                </Form.Item>
                <Form.Item name="field6" label="Color:">
-                 <Input />
+                 <Input
+                  name={'color'}
+                  type='color'
+                  placeholder='Color'
+                  value={formState.color}
+                  onChange={handleAddVehicle} />
                </Form.Item>
                <Form.Item name="field7" label="Notes:">
-                 <Input.TextArea />
+                 <Input.TextArea 
+                  name={'notes'}
+                  type='notes'
+                  placeholder='Notes'
+                  value={formState.notes}
+                  onChange={handleAddVehicle}
+                 />
               </Form.Item>
                <Form.Item>
                  <Button onClick = {handleFormSubmit} size="large" style={{ background: '#615D7A' }} htmlType="submit">
