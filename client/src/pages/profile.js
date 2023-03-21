@@ -55,9 +55,9 @@ const Profile = () => {
             <div style={{ textAlign: 'center', marginBottom: '24px' }}>
               <Avatar size={128} icon={<CarTwoTone />} />
             </div>
-            <p>First Name: </p>{user.firstName}
-            <p>Last Name: </p>{user.lastName}
-            <p>Email: </p>{user.email}
+            <p><b>First Name:</b> {user.firstName}</p>
+            <p><b>Last Name:</b> {user.lastName}</p>
+            <p><b>Email:</b> {user.email}</p>
             {/* <Descriptions>
               <Descriptions.Item label="Name">John Doe</Descriptions.Item>
               <Descriptions.Item label="Email">johndoe@example.com</Descriptions.Item>
@@ -99,15 +99,18 @@ const Profile = () => {
           <Card style={{ background: '#FAE4D1'}}>
             <Title level={1}>Your Vehicle</Title>
             <Divider />
-            <ul>
-                <li>VIN: </li>{user.vehicles[0].vin}
-                <li>Odometer: </li>{user.vehicles[0].odometer}
-                <li>Make: </li>{user.vehicles[0].make}
-                <li>Model: </li>{user.vehicles[0].model}
-                <li>Year: </li>{user.vehicles[0].year}
-                <li>Color: </li>{user.vehicles[0].color}
-                <li>Notes: </li>{user.vehicles[0].notes}
-            </ul>
+            <Form>
+              <ul>
+                  <li>VIN: {user.vehicles[0].vin}</li>
+                  <li>Odometer: {user.vehicles[0].odometer}</li>
+                  <li>Make: {user.vehicles[0].make}</li>
+                  <li>Model: {user.vehicles[0].model}</li>
+                  <li>Year: {user.vehicles[0].year}</li>
+                  <li>Color: {user.vehicles[0].color}</li>
+                  <li>Notes: {user.vehicles[0].notes}</li>
+              </ul>
+            </Form>
+            
             <Title level={1}>Reminders</Title>
             <Divider />
             <Tabs defaultActiveKey="1">
