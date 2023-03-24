@@ -76,7 +76,7 @@ const Profile = () => {
                <Form.Item name="field1" label="VIN #:" >
                 <Input
                   name={'vin'}
-                  type='vin'
+                  type='text'
                   placeholder='VIN'
                   value={formState.vin}
                   onChange={handleAddVehicle} />
@@ -84,7 +84,7 @@ const Profile = () => {
                <Form.Item name="field2" label="Odometer:">
                  <Input
                   name={'odometer'}
-                  type='odometer'
+                  type='text'
                   placeholder='Odometer'
                   value={formState.odometer}
                   onChange={handleAddVehicle} />
@@ -92,7 +92,7 @@ const Profile = () => {
                <Form.Item name="field3" label="Make:">
                  <Input
                   name={'make'}
-                  type='make'
+                  type='text'
                   placeholder='Make'
                   value={formState.make}
                   onChange={handleAddVehicle} />
@@ -100,7 +100,7 @@ const Profile = () => {
                <Form.Item name="field4" label="Model:">
                  <Input
                   name={'model'}
-                  type='model'
+                  type='text'
                   placeholder='Model'
                   value={formState.model}
                   onChange={handleAddVehicle} />
@@ -108,7 +108,7 @@ const Profile = () => {
                <Form.Item name="field5" label="Year:">
                  <Input
                   name={'year'}
-                  type='year'
+                  type='text'
                   placeholder='Year'
                   value={formState.year}
                   onChange={handleAddVehicle} />
@@ -116,7 +116,7 @@ const Profile = () => {
                <Form.Item name="field6" label="Color:">
                  <Input
                   name={'color'}
-                  type='color'
+                  type='text'
                   placeholder='Color'
                   value={formState.color}
                   onChange={handleAddVehicle} />
@@ -124,7 +124,7 @@ const Profile = () => {
                <Form.Item name="field7" label="Notes:">
                  <Input.TextArea 
                   name={'notes'}
-                  type='notes'
+                  type='text'
                   placeholder='Notes'
                   value={formState.notes}
                   onChange={handleAddVehicle}
