@@ -142,18 +142,30 @@ const Profile = () => {
           <Card style={{ background: '#FAE4D1'}}>
             <Title level={1}>Your Vehicle</Title>
             <Divider />
-            <Form>
-              <ul>
-                  <li>VIN: {user.vehicles[0].vin}</li>
-                  <li>Odometer: {user.vehicles[0].odometer}</li>
-                  <li>Make: {user.vehicles[0].make}</li>
-                  <li>Model: {user.vehicles[0].model}</li>
-                  <li>Year: {user.vehicles[0].year}</li>
-                  <li>Color: {user.vehicles[0].color}</li>
-                  <li>Notes: {user.vehicles[0].notes}</li>
-              </ul>
-            </Form>
             
+              <Tabs 
+                defaultActiveKey='0'
+                type="card" 
+                size="small" 
+                items= {user.vehicles.map((vehicle, i) => {
+                  return {
+                    label: `${vehicle.make} ${vehicle.model}`,
+                    key: i,
+                    children: 
+                    <Form>
+                      <ul>
+                        <li>VIN: {vehicle.vin}</li>
+                          <li>Odometer: {vehicle.odometer}</li>
+                          <li>Make: {vehicle.make}</li>
+                          <li>Model: {vehicle.model}</li>
+                          <li>Year: {vehicle.year}</li>
+                          <li>Color: {vehicle.color}</li>
+                          <li>Notes: {vehicle.notes}</li>
+                      </ul>
+                  </Form>
+                  }
+                })}
+              />
             <Title level={1}>Reminders</Title>
             <Divider />
             <Tabs defaultActiveKey="1">
