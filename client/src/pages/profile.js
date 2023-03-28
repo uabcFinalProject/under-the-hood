@@ -42,7 +42,14 @@ const Profile = () => {
     console.log("formState", formState);
     try {
       const { data } = await addVehicle({
-        variables: { ...formState },
+        variables: { 
+          vin: formState.vin,
+          year: parseInt(formState.year),
+          make: formState.make,
+          model: formState.model,
+          color: formState.color,
+          odometer: parseInt(formState.odometer),
+          notes: formState.notes,},
       });
       // Auth.login(data.login.token);
     } catch (e) {
