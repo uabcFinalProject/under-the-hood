@@ -51,7 +51,7 @@ const resolvers = {
       return ServiceHistory.find({});
     },
     me: async (parent, args, context) => {
-      console.log(context.user);
+      // console.log(context.user);
       if (context.user) {
         // const userData = await User.findOne({ _id: context.user._id }).populate('vehicles');
         return User.findOne({ _id: context.user._id })
@@ -89,6 +89,7 @@ const resolvers = {
     },
 
     addVehicle: async (parent, { vin, year, make, model, color, odometer, notes }, context) => {
+      console.log("vehicle Info", vin, year, make, model, color, odometer, notes);
       if (context.user) {
         const vehicle = await Vehicle.create(
           { year, make, model, color, vin, odometer, notes }
@@ -125,7 +126,7 @@ const resolvers = {
     },
 
     addReminder: async (parent, { vehicleId, user, serviceType, notifyStartDate, notifyFrequency, notifyType, notes }, context) => {
-      console.log(context.body);
+      // console.log(context.body);
       // WE KNOW USER _ID IS COMING OVER, BUT WE'RE APPARENTLY NOT GETTING USER TOKEN
       // if (context.user) {
         const createReminder = await Reminder.create({
