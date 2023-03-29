@@ -23,11 +23,17 @@ const httpLink = createHttpLink({
   uri: '/graphql',
 });
 
-const authLink = setContext((_, { login }) => {
+const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
+  // return {
+  //   login: {
+  //     ...login,
+  //     authorization: token ? `Bearer ${token}` : '',
+  //   },
+  // };
   return {
-    login: {
-      ...login,
+    headers: {
+      ...headers,
       authorization: token ? `Bearer ${token}` : '',
     },
   };
@@ -46,6 +52,7 @@ function App () {
           <Nav />
           <Routes>
               <Route path="/" element={<Home />}/>
+              <Route path="/me" element={<Profile />}/>
               <Route path="/profile" element={<Profile />}/>
               <Route path="/history" element={<History />}/>
               <Route path="/reminder" element={<Reminder />}/>
@@ -54,7 +61,6 @@ function App () {
               <Route path="/signup" element={<Signup />}/>
               <Route path="*" element={<NoMatch />}></Route>
           </Routes>
-    
      
       </Router>
     </ApolloProvider>

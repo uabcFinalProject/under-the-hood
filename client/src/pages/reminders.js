@@ -71,8 +71,6 @@ const Reminder = () => {
     setRemindersList(updatedList);
   };
 
-  console.log(Auth.getProfile().data.vehicles);
-  console.log(Auth.getProfile().data._id);
   //use Auth.getProfile to get array of vehicles, then use array of vehicles to populate drop down menu, then fix form submit
   const vehicles = Auth.getProfile().data.vehicles;
   const user = Auth.getProfile().data.user;
