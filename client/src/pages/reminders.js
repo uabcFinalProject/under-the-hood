@@ -44,8 +44,8 @@ const Reminder = () => {
         user: Auth.getProfile().data._id,
         // serviceType: selectedReminder,
         serviceType: "Oil Change",
-        notifyStartDate: values.date.format('yyyy-mm-dd'),
-        //notifyStartDate: "4/2/2023",
+        // notifyStartDate: values.date.format('yyyy-mm-dd'),
+        notifyStartDate: "4/1/2023",
         notifyFrequency: 0,
         notifyType: 'tbd'
       }
@@ -71,8 +71,6 @@ const Reminder = () => {
     setRemindersList(updatedList);
   };
 
-  console.log(Auth.getProfile().data.vehicles);
-  console.log(Auth.getProfile().data._id);
   //use Auth.getProfile to get array of vehicles, then use array of vehicles to populate drop down menu, then fix form submit
   const vehicles = Auth.getProfile().data.vehicles;
   const user = Auth.getProfile().data.user;

@@ -89,7 +89,7 @@ const resolvers = {
     },
 
     addVehicle: async (parent, { vin, year, make, model, color, odometer, notes }, context) => {
-      console.log("vehicle Info", vin, year, make, model, color, odometer, notes);
+      console.log("vehicle Info", typeof vin, typeof year, typeof make, typeof model, typeof color, typeof odometer, typeof notes);
       if (context.user) {
         const vehicle = await Vehicle.create(
           { year, make, model, color, vin, odometer, notes }

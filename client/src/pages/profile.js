@@ -1,9 +1,10 @@
-import React, { useState }from 'react';
+import React, { useState } from 'react';
+import {Navigate} from 'react-router-dom';
 import { Avatar, Card, Col, Divider, Alert, Row, Tabs, Typography, Form, Input, Button } from 'antd';
 import { CarTwoTone } from '@ant-design/icons';
 import { useQuery } from '@apollo/client';
 import { useMutation} from '@apollo/client';
-import { QUERY_ME } from '../utils/queries';
+import { QUERY_ME, QUERY_USER } from '../utils/queries';
 import { ADD_VEHICLE } from '../utils/mutations';
 // import { ADD_REMINDER } from '../utils/mutations';
 import Auth from '../utils/auth';
@@ -12,25 +13,55 @@ const { Title } = Typography;
 const { TabPane } = Tabs;
 
 const Profile = () => {
+  const { loading, data } = useQuery(QUERY_ME);
+
   const [formState, setFormState] = useState({ vin: '', odometer: '',  make: '', model: '', year: '', color: '', notes: '',});
-  const [addVehicle, { error }] = useMutation(ADD_VEHICLE);
-  const { data } = useQuery(QUERY_ME);
-  // const { data: meData} = useQuery(QUERY_ME);
-  // const [ addVehicle, {vehicleError }] = useMutation(ADD_VEHICLE);
-  // const [ addReminder, { reminderError }] = useMutation(ADD_REMINDER);
+  const [addVehicle, { error }] = 
+    useMutation(ADD_VEHICLE,
+    //    {
+    //   update(cache, {data: { 
+    //     addVehicle } }) {
+    //       console.log("CACHE: ", cache);
+    //       try {
+    //         const { vehicles } = cache.
+    //           readQuery({ query:  QUERY_ME });
+
+    //         cache.writeQuery({
+    //           query: QUERY_ME,
+    //           data: { vehicles: [addVehicle, ...vehicles] },
+    //         })
+    //       } catch (e) {
+    //         console.error(e);
+    //       }
+
+    //       const { me } = cache.readQuery({
+    //       query: QUERY_ME });
+            
+    //       cache.writeQuery({
+    //         query: QUERY_ME,
+    //         data: { me: { ...me, vehicles: [...me.vehicles, addVehicle] } },
+    //       });
+    //     }
+    // }
+  );
   
-  const user = Auth.getProfile().data;
-  // console.log(user);
- // const user = data?.me || {};
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  
   if (!Auth.loggedIn()) {
     return (
-      <Alert textAlign='center'>User needs to login to render profile</Alert>
+      <h4>
+        You need to be logged in to see this. Use the navigation links above to
+        sign up or log in!
+    </h4>
     )
   }
+  
+  const user = Auth.getProfile().data;
 
   const handleAddVehicle = (event) => {
     const { name, value } = event.target;
-    console.log('handleLogin', event.target)
     setFormState({
       ...formState,
       [name]: value,
@@ -39,7 +70,6 @@ const Profile = () => {
   
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log("formState", formState);
     try {
       const { data } = await addVehicle({
         variables: { 
@@ -49,7 +79,9 @@ const Profile = () => {
           model: formState.model,
           color: formState.color,
           odometer: parseInt(formState.odometer),
-          notes: formState.notes,},
+          notes: formState.notes,
+          _id: Auth.getProfile().data
+        },
       });
       // Auth.login(data.login.token);
     } catch (e) {
