@@ -12,7 +12,6 @@ export default function Login() {
 
   const handleLogin = (event) => {
     const { name, value } = event.target;
-    console.log('handleLogin', event.target)
     setFormState({
       ...formState,
       [name]: value,
@@ -21,12 +20,10 @@ export default function Login() {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
     try {
       const { data } = await login({
         variables: { ...formState },
       });
-      console.log('data', data)
       Auth.login(data.login.token);
     } catch (e) {
       console.error(e);

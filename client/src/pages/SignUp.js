@@ -19,7 +19,6 @@ const SignUp = (props) => {
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-        console.log(event.target);
         setFormState({
             ...formState,
             [name]: value,
@@ -33,7 +32,6 @@ const SignUp = (props) => {
             const { data } = await addUser({
                 variables: { ...formState },
             });
-            // console.log("data", data)
             Auth.login(data.addUser.token);
         } catch (e) {
             console.error(e);
