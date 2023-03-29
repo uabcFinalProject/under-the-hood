@@ -44,8 +44,8 @@ const Reminder = () => {
         user: Auth.getProfile().data._id,
         // serviceType: selectedReminder,
         serviceType: "Oil Change",
-        notifyStartDate: values.date.format('yyyy-mm-dd'),
-        //notifyStartDate: "4/2/2023",
+        // notifyStartDate: values.date.format('yyyy-mm-dd'),
+        notifyStartDate: "4/1/2023",
         notifyFrequency: 0,
         notifyType: 'tbd'
       }
